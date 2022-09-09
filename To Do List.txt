@@ -1,0 +1,27 @@
+--REQUIRED--
+
+- User Player Hurtbox
+- User Bullet Hitbox
+- Enemy Hurtbox
+- Enemy Bullet Hitbox
+- User Health Bar
+- User Score
+- Boss Hurtbox
+- Boss New Weapons
+- Boss Health Bar
+- Screen Swapping
+- Enemy Culling
+- UI Design
+- Music
+- Sound Effects
+- Looping Background
+
+--OPTIONAL--
+- Alternate Weapons
+- Multiple Bosses
+- Public Leaderboard
+
+
+
+
+
