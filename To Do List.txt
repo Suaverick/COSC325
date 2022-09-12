@@ -1,5 +1,5 @@
 --REQUIRED--
-
+- Enemy theme packs for design
 - User Player Hurtbox
 - User Bullet Hitbox
 - Enemy Hurtbox
@@ -20,6 +20,8 @@
 - Alternate Weapons
 - Multiple Bosses
 - Public Leaderboard
+- Special attacks against enemy
+
 
 
 
