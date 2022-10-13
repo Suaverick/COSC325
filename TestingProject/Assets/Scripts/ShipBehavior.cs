@@ -9,11 +9,11 @@ public class ShipBehavior : MonoBehaviour {
     public float fltMinY;
     public float fltMaxY;
 
-    public Transform bulletSpawnPoint;
+    public Transform shootingPoint;
     public GameObject bulletPrefab;
-    public float fltBulletSpeed;
+    public float fltBulletFireRate;
 
-    Collider2D col;
+    float fltTimer = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -24,9 +24,7 @@ public class ShipBehavior : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
-        ShipPosition();
-        
+        ShipPosition();   
     }
 
     void ShipPosition() {
@@ -39,15 +37,13 @@ public class ShipBehavior : MonoBehaviour {
 
             if (touch.phase == TouchPhase.Began)
             {
-
                 Collider2D touchedCollider = Physics2D.OverlapPoint(touchPosition);
-
+                bulletBehavior(fltBulletFireRate);
             }
             if (touch.phase == TouchPhase.Moved)
             {
                 transform.position = new Vector2(touchPosition.x, touchPosition.y);
-                bulletBehavoir();
-
+                bulletBehavior(fltBulletFireRate);
             }
             if (touch.phase == TouchPhase.Ended)
             {
@@ -59,10 +55,13 @@ public class ShipBehavior : MonoBehaviour {
 
     }
 
-    void bulletBehavoir()
+    void bulletBehavior(float fltFireRate)
     {
-        var bullet = Instantiate(bulletPrefab, bulletSpawnPoint.position, bulletSpawnPoint.rotation);
-        bullet.GetComponent<Rigidbody2D>().velocity = bulletSpawnPoint.up * fltBulletSpeed;
+        if (Time.time >= fltTimer)
+        {
+            Instantiate(bulletPrefab, shootingPoint.position, transform.rotation);
+            fltTimer = Time.time + fltFireRate;
+        }
     }
 
 }
