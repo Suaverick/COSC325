@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ShipBehavior : MonoBehaviour {
 
@@ -9,16 +10,30 @@ public class ShipBehavior : MonoBehaviour {
     public float fltMinY;
     public float fltMaxY;
 
+    public static ShipBehavior Instance;
+
     public Transform shootingPoint;
     public GameObject bulletPrefab;
     public float fltBulletFireRate;
 
+    private bool boolIsLeft = true;
+
     float fltTimer = 0;
+    float fltSwapTimer = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-  
+
+        if(Instance != null)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+
+        Instance = this;
+        GameObject.DontDestroyOnLoad(this.gameObject);
+
     }
 
     // Update is called once per frame
@@ -38,6 +53,9 @@ public class ShipBehavior : MonoBehaviour {
             if (touch.phase == TouchPhase.Began)
             {
                 Collider2D touchedCollider = Physics2D.OverlapPoint(touchPosition);
+            }
+            if (touch.phase == TouchPhase.Stationary)
+            {
                 bulletBehavior(fltBulletFireRate);
             }
             if (touch.phase == TouchPhase.Moved)
@@ -47,9 +65,8 @@ public class ShipBehavior : MonoBehaviour {
             }
             if (touch.phase == TouchPhase.Ended)
             {
-
+                //ScreenSwap();
             }
-
 
         }
 
@@ -61,6 +78,25 @@ public class ShipBehavior : MonoBehaviour {
         {
             Instantiate(bulletPrefab, shootingPoint.position, transform.rotation);
             fltTimer = Time.time + fltFireRate;
+        }
+    }
+
+    void ScreenSwap()
+    {
+        if (Time.time >= fltSwapTimer)
+        {
+            if (transform.position.x >= 2 && boolIsLeft == true)
+            {
+                SceneManager.LoadScene("SwappedLevel");
+                boolIsLeft = false;
+                fltSwapTimer = Time.time + 1;
+            }
+            /*if (transform.position.x >= -2 && boolIsLeft == false)
+            {
+                SceneManager.LoadScene("TestLevel");
+                boolIsLeft = true;
+                fltSwapTimer = Time.time + 1;
+            }*/
         }
     }
 
