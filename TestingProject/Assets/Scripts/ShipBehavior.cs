@@ -11,16 +11,25 @@ public class ShipBehavior : MonoBehaviour {
     public float fltMaxY;
 
     public static ShipBehavior Instance;
+    private Rigidbody2D rb;
 
     public Transform shootingPoint;
     public GameObject bulletPrefab;
     public float fltBulletFireRate;
 
-    float fltTimer = 0;
+    private Vector3 touchPosition;
+    private Vector3 direction;
+
+    public float fltMoveSpeed;
+    private float fltTimer = 0;
+
+    private bool boolLeft = true;
 
     // Start is called before the first frame update
     void Start()
     {
+
+        rb = GetComponent<Rigidbody2D>();
 
         // If this object already exists, destroy all duplicates
         if(Instance != null)
@@ -43,36 +52,22 @@ public class ShipBehavior : MonoBehaviour {
         ShipPosition();   
     }
 
-    // Function for (mainly) handling ship positioning, but it also handles when the ship should shoot
-    void ShipPosition() {
-
-        // If a touch is detected
-        if (Input.touchCount > 0)
+    void ShipPosition()
+    {
+        if (Input.touchCount > 0)    // If the screen is being touched
         {
-            // Get the touch input, and sets touch position = to where the finger is touching the screen
-            Touch touch = Input.GetTouch(0);
-            Vector2 touchPosition = Camera.main.ScreenToWorldPoint(touch.position);
+            Touch touch = Input.GetTouch(0);                                     // Get the information of where the screen is touched, and set it to touch
+            touchPosition = Camera.main.ScreenToWorldPoint(touch.position);     // Get the position of touch in relation to the camera
+            touchPosition.z = 0;                                                // Sets rortation to 0
+            direction = (touchPosition - transform.position);                   // Sets the velocity direction using the touchposition, and what position the item is supposed to transform to
+            rb.velocity = new Vector2(direction.x, direction.y) * fltMoveSpeed; // Velocity of the object is set to its x direction, and y direction * the speed variable
+            bulletBehavior(fltBulletFireRate);                                  // Updates bullet fire
 
-            if (touch.phase == TouchPhase.Began) //If the screen is just touched
-            { 
-                Collider2D touchedCollider = Physics2D.OverlapPoint(touchPosition); // Allows overlap with certain collision to prevent erros
-            }
-            if (touch.phase == TouchPhase.Stationary) // If the finger is staionary on the screen
+            if (touch.phase == TouchPhase.Ended)                                // If finger is taken off screen
             {
-                bulletBehavior(fltBulletFireRate);    // Fires bullets
+                rb.velocity = Vector2.zero;                                     // Set velocity of the object to 0
             }
-            if (touch.phase == TouchPhase.Moved)      // If the finger is moving
-            {
-                transform.position = new Vector2(touchPosition.x, touchPosition.y);  // Sets position of object to the finger location
-                bulletBehavior(fltBulletFireRate);                                   // Fires bullets
-            }
-            if (touch.phase == TouchPhase.Ended)     // If the finger lets go of the screen
-            {
-                
-            }
-
         }
-
     }
 
     // Function for bullet shooting behavior
@@ -84,6 +79,30 @@ public class ShipBehavior : MonoBehaviour {
             Instantiate(bulletPrefab, shootingPoint.position, transform.rotation);
             fltTimer = Time.time + fltFireRate;
         }
+    }
+
+    // When the ship enters a "trigger" box
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        // Prevents anything from happening when it detects a bullet from entering (temp)
+        if (other.gameObject.tag == "Bullet")
+        {
+
+        }
+        else
+        {
+            if (boolLeft == true && other.gameObject.tag == "SwapRight" && rb.velocity.x > 20)     // If you are on the left screen, and the collision box's tag is SwapRight, change to other scene
+            {
+                SceneManager.LoadScene("SwappedLevel");
+                boolLeft = false;
+            }
+            if (boolLeft == false && other.gameObject.tag == "SwapLeft" && rb.velocity.x < -20)     // If you are on the right screen, and the collision box's tag is SwapLeft, change to other scene
+            {
+                SceneManager.LoadScene("TestLevel");
+                boolLeft = true;
+            }
+        }
+
     }
 
 }
