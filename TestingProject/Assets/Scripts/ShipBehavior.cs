@@ -52,7 +52,7 @@ public class ShipBehavior : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-        ShipPosition();   
+        ShipPosition();
     }
 
     void ShipPosition()
@@ -96,12 +96,12 @@ public class ShipBehavior : MonoBehaviour {
         {
             takeDamage(other);
         }
-        else if (boolLeft == true && other.gameObject.tag == "SwapRight" && rb.velocity.x > 20)     // If you are on the left screen, and the collision box's tag is SwapRight, change to other scene
+        else if (boolLeft == true && other.gameObject.tag == "SwapRight" && rb.velocity.x > 10)     // If you are on the left screen, and the collision box's tag is SwapRight, change to other scene
         {
             SceneManager.LoadScene("SwappedLevel");
             boolLeft = false;
         }
-        else if (boolLeft == false && other.gameObject.tag == "SwapLeft" && rb.velocity.x < -20)     // If you are on the right screen, and the collision box's tag is SwapLeft, change to other scene
+        else if (boolLeft == false && other.gameObject.tag == "SwapLeft" && rb.velocity.x < -10)     // If you are on the right screen, and the collision box's tag is SwapLeft, change to other scene
         {
             SceneManager.LoadScene("TestLevel");
             boolLeft = true;

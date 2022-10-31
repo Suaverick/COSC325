@@ -27,6 +27,7 @@ public class BasicEnemyBehavior : MonoBehaviour
     {
         if (other.gameObject.tag == "Bullet")
         {
+            Destroy(other.gameObject);
             Destroy(gameObject);
         }
     }
