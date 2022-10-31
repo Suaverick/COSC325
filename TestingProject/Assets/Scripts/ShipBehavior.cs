@@ -22,8 +22,11 @@ public class ShipBehavior : MonoBehaviour {
 
     public float fltMoveSpeed;
     private float fltTimer = 0;
+    private float fltInvincibilityTimer = 0;
 
     private bool boolLeft = true;
+
+    private int intLife = 3;
 
     // Start is called before the first frame update
     void Start()
@@ -89,20 +92,36 @@ public class ShipBehavior : MonoBehaviour {
         {
 
         }
-        else
+        else if (other.gameObject.tag == "EnemyBullet")
         {
-            if (boolLeft == true && other.gameObject.tag == "SwapRight" && rb.velocity.x > 20)     // If you are on the left screen, and the collision box's tag is SwapRight, change to other scene
-            {
-                SceneManager.LoadScene("SwappedLevel");
-                boolLeft = false;
-            }
-            if (boolLeft == false && other.gameObject.tag == "SwapLeft" && rb.velocity.x < -20)     // If you are on the right screen, and the collision box's tag is SwapLeft, change to other scene
-            {
-                SceneManager.LoadScene("TestLevel");
-                boolLeft = true;
-            }
+            takeDamage(other);
+        }
+        else if (boolLeft == true && other.gameObject.tag == "SwapRight" && rb.velocity.x > 20)     // If you are on the left screen, and the collision box's tag is SwapRight, change to other scene
+        {
+            SceneManager.LoadScene("SwappedLevel");
+            boolLeft = false;
+        }
+        else if (boolLeft == false && other.gameObject.tag == "SwapLeft" && rb.velocity.x < -20)     // If you are on the right screen, and the collision box's tag is SwapLeft, change to other scene
+        {
+            SceneManager.LoadScene("TestLevel");
+            boolLeft = true;
         }
 
+    }
+
+    private void takeDamage(Collider2D other)
+    {
+        if (Time.time >= fltInvincibilityTimer)
+        {
+            Destroy(other.gameObject);
+            intLife--;
+            if (intLife <= 0)
+            {
+                Destroy(this.gameObject);
+            }
+            fltInvincibilityTimer = Time.time + 3f;
+        }
+        
     }
 
 }
