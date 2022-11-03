@@ -9,6 +9,9 @@ public class ShipBehavior : MonoBehaviour {
     public static ShipBehavior Instance;
     private Rigidbody2D rb;
     private Collider2D col;
+    public GameObject left;
+    public GameObject right;
+    public Transform player;
 
     // Collision and Game Object data for bullets
     public Transform shootingPoint;
@@ -96,13 +99,23 @@ public class ShipBehavior : MonoBehaviour {
                 endTouchPosition = Input.GetTouch(0).position;
                 if (endTouchPosition.x < startTouchPosition.x && boolPlayerTouched == false && boolLeft == true)
                 {
-                    SceneManager.LoadScene("SwappedLevel");
+                    /*SceneManager.LoadScene("SwappedLevel");
+                    boolLeft = false;*/
+
+                    left.SetActive(false);
+                    right.SetActive(true);
                     boolLeft = false;
+
                 }
                 if (endTouchPosition.x > startTouchPosition.x && boolPlayerTouched == false && boolLeft == false)
                 {
-                    SceneManager.LoadScene("TestLevel");
+                    /*SceneManager.LoadScene("TestLevel");
+                    boolLeft = true;*/
+
+                    left.SetActive(true);
+                    right.SetActive(false);
                     boolLeft = true;
+
                 }
                 rb.velocity = Vector2.zero;
                 boolPlayerTouched = false;
@@ -116,7 +129,7 @@ public class ShipBehavior : MonoBehaviour {
     {
         if (Time.time >= fltTimer)
         {
-            Instantiate(bulletPrefab, shootingPoint.position, transform.rotation);
+            Instantiate(bulletPrefab, shootingPoint.position, transform.rotation, player);
             fltTimer = Time.time + fltFireRate;
         }
     }

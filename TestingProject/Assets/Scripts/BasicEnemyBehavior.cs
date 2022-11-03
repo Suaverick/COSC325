@@ -7,6 +7,7 @@ public class BasicEnemyBehavior : MonoBehaviour
 
     public Transform shootingPoint;
     public GameObject bulletPrefab;
+    public Transform basicEnemy;
     public float fltBulletFireRate;
 
     private float fltTimer = 0;
@@ -36,7 +37,7 @@ public class BasicEnemyBehavior : MonoBehaviour
     {
         if (Time.time >= fltTimer)
         {
-            Instantiate(bulletPrefab, shootingPoint.position, transform.rotation);
+            Instantiate(bulletPrefab, shootingPoint.position, transform.rotation, basicEnemy);
             fltTimer = Time.time + fltFireRate;
         }
     }

@@ -7,6 +7,7 @@ public class SpawnObject : MonoBehaviour
 
     public GameObject basicEnemy;
     GameObject go;
+    public Transform spawner;
     Vector3 spawnPosition;
     float fltMoveSpeed = 2f;
 
@@ -43,7 +44,7 @@ public class SpawnObject : MonoBehaviour
         offScreenSpawn = spawnPosition;
         offScreenSpawn.y = spawnPosition.y + 8;
 
-        go = Instantiate(basicEnemy, spawnPosition, basicEnemy.transform.rotation);
+        go = Instantiate(basicEnemy, spawnPosition, basicEnemy.transform.rotation, spawner);
 
     }
 }

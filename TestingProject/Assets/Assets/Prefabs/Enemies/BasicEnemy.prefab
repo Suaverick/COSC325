@@ -149,6 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shootingPoint: {fileID: 9193538727667494199}
   bulletPrefab: {fileID: 6728135552015766646, guid: 7bd6005686a31ca4f8b74df44d3385c2, type: 3}
+  basicEnemy: {fileID: 9193538726039477068}
   fltBulletFireRate: 1
 --- !u!1 &9193538727667494088
 GameObject:
