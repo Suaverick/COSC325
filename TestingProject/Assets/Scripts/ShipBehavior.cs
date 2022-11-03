@@ -19,6 +19,8 @@ public class ShipBehavior : MonoBehaviour {
     private Vector3 touchPosition;
     private Vector3 direction;
     public float fltMoveSpeed;
+    private Vector2 startTouchPosition;
+    private Vector2 endTouchPosition;
 
     // Timers for the needed functions
     // fltTimer is for timing bullets, fltInvincibilityTimer is for timing player invincibility after being hit
@@ -67,6 +69,7 @@ public class ShipBehavior : MonoBehaviour {
             if (touch.phase == TouchPhase.Began)
             {
                 Collider2D touchedCollider = Physics2D.OverlapPoint(touchPosition);
+                startTouchPosition = Input.GetTouch(0).position;
                 if (col == touchedCollider)
                 {
                     boolPlayerTouched = true;
@@ -90,6 +93,17 @@ public class ShipBehavior : MonoBehaviour {
             }
             if (touch.phase == TouchPhase.Ended)
             {
+                endTouchPosition = Input.GetTouch(0).position;
+                if (endTouchPosition.x < startTouchPosition.x && boolPlayerTouched == false && boolLeft == true)
+                {
+                    SceneManager.LoadScene("SwappedLevel");
+                    boolLeft = false;
+                }
+                if (endTouchPosition.x > startTouchPosition.x && boolPlayerTouched == false && boolLeft == false)
+                {
+                    SceneManager.LoadScene("TestLevel");
+                    boolLeft = true;
+                }
                 rb.velocity = Vector2.zero;
                 boolPlayerTouched = false;
             }
@@ -118,16 +132,6 @@ public class ShipBehavior : MonoBehaviour {
         else if (other.gameObject.tag == "EnemyBullet")
         {
             takeDamage(other);
-        }
-        else if (boolLeft == true && other.gameObject.tag == "SwapRight" && rb.velocity.x > 10)     // If you are on the left screen, and the collision box's tag is SwapRight, change to other scene
-        {
-            SceneManager.LoadScene("SwappedLevel");
-            boolLeft = false;
-        }
-        else if (boolLeft == false && other.gameObject.tag == "SwapLeft" && rb.velocity.x < -10)     // If you are on the right screen, and the collision box's tag is SwapLeft, change to other scene
-        {
-            SceneManager.LoadScene("TestLevel");
-            boolLeft = true;
         }
 
     }
