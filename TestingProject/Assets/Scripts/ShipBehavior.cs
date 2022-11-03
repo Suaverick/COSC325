@@ -5,24 +5,23 @@ using UnityEngine.SceneManagement;
 
 public class ShipBehavior : MonoBehaviour {
 
-    public float fltMinX;
-    public float fltMaxX;
-    public float fltMinY;
-    public float fltMaxY;
-
+    // Collision and Game Object data for player
     public static ShipBehavior Instance;
     private Rigidbody2D rb;
-
     private Collider2D col;
 
+    // Collision and Game Object data for bullets
     public Transform shootingPoint;
     public GameObject bulletPrefab;
     public float fltBulletFireRate;
 
+    // Used in ShipPosition() function
     private Vector3 touchPosition;
     private Vector3 direction;
-
     public float fltMoveSpeed;
+
+    // Timers for the needed functions
+    // fltTimer is for timing bullets, fltInvincibilityTimer is for timing player invincibility after being hit
     private float fltTimer = 0;
     private float fltInvincibilityTimer = 0;
 
@@ -45,7 +44,6 @@ public class ShipBehavior : MonoBehaviour {
             return;
         }
 
-
         Instance = this;
 
         // Does not destroy object when moving between scenes
@@ -66,7 +64,6 @@ public class ShipBehavior : MonoBehaviour {
             Touch touch = Input.GetTouch(0);
             touchPosition = Camera.main.ScreenToWorldPoint(touch.position);     // Get the position of touch in relation to the camera
             touchPosition.z = 0;
-
             if (touch.phase == TouchPhase.Began)
             {
                 Collider2D touchedCollider = Physics2D.OverlapPoint(touchPosition);
@@ -75,7 +72,6 @@ public class ShipBehavior : MonoBehaviour {
                     boolPlayerTouched = true;
                 }
             }
-
             if (touch.phase == TouchPhase.Moved)
             {
                 if(boolPlayerTouched)
@@ -85,7 +81,6 @@ public class ShipBehavior : MonoBehaviour {
                     bulletBehavior(fltBulletFireRate);                                  // Updates bullet fire
                 }
             }
-
             if (touch.phase == TouchPhase.Stationary)
             {
                 if(boolPlayerTouched)
@@ -93,7 +88,6 @@ public class ShipBehavior : MonoBehaviour {
                     bulletBehavior(fltBulletFireRate);
                 }
             }
-
             if (touch.phase == TouchPhase.Ended)
             {
                 rb.velocity = Vector2.zero;
