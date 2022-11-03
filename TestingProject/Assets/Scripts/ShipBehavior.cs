@@ -13,6 +13,8 @@ public class ShipBehavior : MonoBehaviour {
     public static ShipBehavior Instance;
     private Rigidbody2D rb;
 
+    private Collider2D col;
+
     public Transform shootingPoint;
     public GameObject bulletPrefab;
     public float fltBulletFireRate;
@@ -25,6 +27,7 @@ public class ShipBehavior : MonoBehaviour {
     private float fltInvincibilityTimer = 0;
 
     private bool boolLeft = true;
+    private bool boolPlayerTouched = false;
 
     private int intLife = 3;
 
@@ -33,6 +36,7 @@ public class ShipBehavior : MonoBehaviour {
     {
 
         rb = GetComponent<Rigidbody2D>();
+        col = GetComponent<Collider2D>();
 
         // If this object already exists, destroy all duplicates
         if(Instance != null)
@@ -57,18 +61,43 @@ public class ShipBehavior : MonoBehaviour {
 
     void ShipPosition()
     {
-        if (Input.touchCount > 0)    // If the screen is being touched
+        if (Input.touchCount > 0)
         {
-            Touch touch = Input.GetTouch(0);                                     // Get the information of where the screen is touched, and set it to touch
+            Touch touch = Input.GetTouch(0);
             touchPosition = Camera.main.ScreenToWorldPoint(touch.position);     // Get the position of touch in relation to the camera
-            touchPosition.z = 0;                                                // Sets rortation to 0
-            direction = (touchPosition - transform.position);                   // Sets the velocity direction using the touchposition, and what position the item is supposed to transform to
-            rb.velocity = new Vector2(direction.x, direction.y) * fltMoveSpeed; // Velocity of the object is set to its x direction, and y direction * the speed variable
-            bulletBehavior(fltBulletFireRate);                                  // Updates bullet fire
+            touchPosition.z = 0;
 
-            if (touch.phase == TouchPhase.Ended)                                // If finger is taken off screen
+            if (touch.phase == TouchPhase.Began)
             {
-                rb.velocity = Vector2.zero;                                     // Set velocity of the object to 0
+                Collider2D touchedCollider = Physics2D.OverlapPoint(touchPosition);
+                if (col == touchedCollider)
+                {
+                    boolPlayerTouched = true;
+                }
+            }
+
+            if (touch.phase == TouchPhase.Moved)
+            {
+                if(boolPlayerTouched)
+                {
+                    direction = (touchPosition - transform.position);                   // Sets the velocity direction using the touchposition, and what position the item is supposed to transform to
+                    rb.velocity = new Vector2(direction.x, direction.y) * fltMoveSpeed; // Velocity of the object is set to its x direction, and y direction * the speed variable
+                    bulletBehavior(fltBulletFireRate);                                  // Updates bullet fire
+                }
+            }
+
+            if (touch.phase == TouchPhase.Stationary)
+            {
+                if(boolPlayerTouched)
+                {
+                    bulletBehavior(fltBulletFireRate);
+                }
+            }
+
+            if (touch.phase == TouchPhase.Ended)
+            {
+                rb.velocity = Vector2.zero;
+                boolPlayerTouched = false;
             }
         }
     }
