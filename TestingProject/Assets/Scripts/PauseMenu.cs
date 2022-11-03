@@ -32,11 +32,6 @@ public class PauseMenu : MonoBehaviour
     public void QuitButton()
     {
         SceneManager.LoadScene("MainMenu");
-        // The ship is not deleted on new loads because of the screen swap, so we must manually search for it and destroy it when leaving a level
-        foreach (GameObject o in Object.FindObjectsOfType<GameObject>())
-        {
-            Destroy(o);
-        }
         Time.timeScale = 1f;
     }
 

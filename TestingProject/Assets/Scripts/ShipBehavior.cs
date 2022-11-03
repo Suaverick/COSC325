@@ -11,6 +11,7 @@ public class ShipBehavior : MonoBehaviour {
     private Collider2D col;
     public GameObject left;
     public GameObject right;
+    public GameObject pauseMenuUI;
     public Transform player;
 
     // Collision and Game Object data for bullets
@@ -41,18 +42,6 @@ public class ShipBehavior : MonoBehaviour {
 
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
-
-        // If this object already exists, destroy all duplicates
-        if(Instance != null)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
-
-        Instance = this;
-
-        // Does not destroy object when moving between scenes
-        GameObject.DontDestroyOnLoad(this.gameObject);
 
     }
 
@@ -96,26 +85,29 @@ public class ShipBehavior : MonoBehaviour {
             }
             if (touch.phase == TouchPhase.Ended)
             {
-                endTouchPosition = Input.GetTouch(0).position;
-                if (endTouchPosition.x < startTouchPosition.x && boolPlayerTouched == false && boolLeft == true)
+                if (!pauseMenuUI.activeInHierarchy)
                 {
-                    /*SceneManager.LoadScene("SwappedLevel");
-                    boolLeft = false;*/
+                    endTouchPosition = Input.GetTouch(0).position;
+                    if (endTouchPosition.x < startTouchPosition.x && boolPlayerTouched == false && boolLeft == true)
+                    {
+                        /*SceneManager.LoadScene("SwappedLevel");
+                        boolLeft = false;*/
 
-                    left.SetActive(false);
-                    right.SetActive(true);
-                    boolLeft = false;
+                        left.SetActive(false);
+                        right.SetActive(true);
+                        boolLeft = false;
 
-                }
-                if (endTouchPosition.x > startTouchPosition.x && boolPlayerTouched == false && boolLeft == false)
-                {
-                    /*SceneManager.LoadScene("TestLevel");
-                    boolLeft = true;*/
+                    }
+                    if (endTouchPosition.x > startTouchPosition.x && boolPlayerTouched == false && boolLeft == false)
+                    {
+                        /*SceneManager.LoadScene("TestLevel");
+                        boolLeft = true;*/
 
-                    left.SetActive(true);
-                    right.SetActive(false);
-                    boolLeft = true;
+                        left.SetActive(true);
+                        right.SetActive(false);
+                        boolLeft = true;
 
+                    }
                 }
                 rb.velocity = Vector2.zero;
                 boolPlayerTouched = false;
