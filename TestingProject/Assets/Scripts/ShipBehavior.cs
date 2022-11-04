@@ -13,6 +13,7 @@ public class ShipBehavior : MonoBehaviour {
     public GameObject right;
     public GameObject pauseMenuUI;
     public Transform player;
+    public GameObject gameOverUI;
 
     // Collision and Game Object data for bullets
     public Transform shootingPoint;
@@ -141,6 +142,10 @@ public class ShipBehavior : MonoBehaviour {
 
     }
 
+
+
+
+
     private void takeDamage(Collider2D other)
     {
         if (Time.time >= fltInvincibilityTimer)
@@ -149,11 +154,32 @@ public class ShipBehavior : MonoBehaviour {
             intLife--;
             if (intLife <= 0)
             {
-                Destroy(this.gameObject);
+                gameOver();
+
             }
             fltInvincibilityTimer = Time.time + 3f;
         }
         
+    }
+
+    private void gameOver()
+    {
+        gameOverUI.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    public void restartButton()
+    {
+        gameOverUI.SetActive(false);
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("TestLevel");
+    }
+
+    public void quitButton()
+    {
+        gameOverUI.SetActive(false);
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
     }
 
 }
