@@ -9,19 +9,30 @@ public class BasicEnemyBehavior : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform basicEnemy;
     public float fltBulletFireRate;
+    private float fltMoveSpeed = 2f;
+    private Vector3 spawnPosition;
 
     private float fltTimer = 0;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        spawnPosition = gameObject.transform.position;
+        spawnPosition.y = spawnPosition.y - 8;
     }
 
     // Update is called once per frame
     void Update()
     {
-        bulletBehavior(fltBulletFireRate);
+        if (gameObject.transform.position != spawnPosition)
+        {
+            Vector3 newPos = Vector3.MoveTowards(gameObject.transform.position, spawnPosition, fltMoveSpeed * Time.deltaTime);
+            gameObject.transform.position = newPos;
+        }
+        if (gameObject.transform.position == spawnPosition)
+        {
+            bulletBehavior(fltBulletFireRate);
+        }
     }
 
     public void OnTriggerEnter2D(Collider2D other)
