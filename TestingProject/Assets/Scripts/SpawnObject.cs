@@ -27,11 +27,7 @@ public class SpawnObject : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*if(go.transform.position != spawnPosition)
-        {
-            Vector3 newPos = Vector3.MoveTowards(go.transform.position, spawnPosition, fltMoveSpeed * Time.deltaTime);
-            go.transform.position = newPos;
-        }*/
+     
     }
 
     void SpawnBasicEnemy(float spawnPositionX, float spawnPositionY)
@@ -44,7 +40,7 @@ public class SpawnObject : MonoBehaviour
         offScreenSpawn = spawnPosition;
         offScreenSpawn.y = spawnPosition.y + 8;
 
-        go = Instantiate(basicEnemy, spawnPosition, basicEnemy.transform.rotation, spawner);
+        go = Instantiate(basicEnemy, offScreenSpawn, basicEnemy.transform.rotation, spawner);
 
     }
 }
