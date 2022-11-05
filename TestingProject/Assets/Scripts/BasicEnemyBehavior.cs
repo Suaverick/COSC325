@@ -24,12 +24,14 @@ public class BasicEnemyBehavior : MonoBehaviour
         bulletBehavior(fltBulletFireRate);
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Bullet")
         {
+            ScoreManager.instance.AddPoint();
             Destroy(other.gameObject);
             Destroy(gameObject);
+
         }
     }
 
