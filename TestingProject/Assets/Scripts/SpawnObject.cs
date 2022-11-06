@@ -18,19 +18,19 @@ public class SpawnObject : MonoBehaviour
     {
         if (boolIsEnabled == true)
         {
-            SpawnBasicEnemy(0, 3);
-            SpawnBasicEnemy(-2, 3);
-            SpawnBasicEnemy(2, 3);
+            SpawnBasicEnemy(0, 3, true);
+            SpawnBasicEnemy(-2, 3, true);
+            SpawnBasicEnemy(2, 3, true);
         }
     }
 
     // Update is called once per frame
     void Update()
     {
-     
+
     }
 
-    void SpawnBasicEnemy(float spawnPositionX, float spawnPositionY)
+    void SpawnBasicEnemy(float spawnPositionX, float spawnPositionY, bool boolIsLeft)
     {
         spawnPosition.x = spawnPositionX;
         spawnPosition.y = spawnPositionY;

@@ -14,6 +14,7 @@ public class ShipBehavior : MonoBehaviour {
     public GameObject pauseMenuUI;
     public Transform player;
     public GameObject gameOverUI;
+    private GameObject[] bullets;
 
     // Collision and Game Object data for bullets
     public Transform shootingPoint;
@@ -89,21 +90,19 @@ public class ShipBehavior : MonoBehaviour {
                 if (!pauseMenuUI.activeInHierarchy)
                 {
                     endTouchPosition = Input.GetTouch(0).position;
-                    if (endTouchPosition.x < startTouchPosition.x && boolPlayerTouched == false && boolLeft == true)
+                    if (endTouchPosition.x < startTouchPosition.x && boolPlayerTouched == false && boolLeft == true && Mathf.Abs(endTouchPosition.x - startTouchPosition.x) > 100)
                     {
-                        /*SceneManager.LoadScene("SwappedLevel");
-                        boolLeft = false;*/
 
+                        DestoryAllBullet();
                         left.SetActive(false);
                         right.SetActive(true);
                         boolLeft = false;
 
                     }
-                    if (endTouchPosition.x > startTouchPosition.x && boolPlayerTouched == false && boolLeft == false)
+                    if (endTouchPosition.x > startTouchPosition.x && boolPlayerTouched == false && boolLeft == false && Mathf.Abs(endTouchPosition.x - startTouchPosition.x) > 100)
                     {
-                        /*SceneManager.LoadScene("TestLevel");
-                        boolLeft = true;*/
 
+                        DestoryAllBullet();
                         left.SetActive(true);
                         right.SetActive(false);
                         boolLeft = true;
@@ -142,10 +141,6 @@ public class ShipBehavior : MonoBehaviour {
 
     }
 
-
-
-
-
     private void takeDamage(Collider2D other)
     {
         if (Time.time >= fltInvincibilityTimer)
@@ -180,6 +175,21 @@ public class ShipBehavior : MonoBehaviour {
         gameOverUI.SetActive(false);
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
+    }
+
+    public void DestroyBullets(string tag)
+    {
+        bullets = GameObject.FindGameObjectsWithTag(tag);
+        for(int i = 0; i < bullets.Length; i++)
+        {
+            Destroy(bullets[i]);
+        }
+    }
+
+    public void DestoryAllBullet()
+    {
+        DestroyBullets("Bullet");
+        DestroyBullets("EnemyBullet");
     }
 
 }
