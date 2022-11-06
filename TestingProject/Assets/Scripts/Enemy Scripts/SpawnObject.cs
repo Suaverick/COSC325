@@ -6,10 +6,8 @@ public class SpawnObject : MonoBehaviour
 {
 
     public GameObject basicEnemy;
-    GameObject go;
     public Transform spawner;
     Vector3 spawnPosition;
-    float fltMoveSpeed = 2f;
 
     public bool boolIsEnabled = false;
 
@@ -19,8 +17,8 @@ public class SpawnObject : MonoBehaviour
         if (boolIsEnabled == true)
         {
             SpawnBasicEnemy(0, 3, true);
-            SpawnBasicEnemy(-2, 3, true);
-            SpawnBasicEnemy(2, 3, true);
+            SpawnBasicEnemy(-2, 3.5f, true);
+            SpawnBasicEnemy(2, 3.5f, true);
         }
     }
 
@@ -40,7 +38,7 @@ public class SpawnObject : MonoBehaviour
         offScreenSpawn = spawnPosition;
         offScreenSpawn.y = spawnPosition.y + 8;
 
-        go = Instantiate(basicEnemy, offScreenSpawn, basicEnemy.transform.rotation, spawner);
+        Instantiate(basicEnemy, offScreenSpawn, basicEnemy.transform.rotation, spawner);
 
     }
 }

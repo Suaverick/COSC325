@@ -160,6 +160,7 @@ public class ShipBehavior : MonoBehaviour {
     private void gameOver()
     {
         gameOverUI.SetActive(true);
+        gameObject.transform.localScale = new Vector3(0, 0, 0);
         Time.timeScale = 0f;
     }
 
