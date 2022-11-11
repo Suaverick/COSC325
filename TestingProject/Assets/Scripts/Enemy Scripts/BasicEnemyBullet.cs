@@ -25,4 +25,5 @@ public class BasicEnemyBullet : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
 }

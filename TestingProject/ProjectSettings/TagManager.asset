@@ -8,6 +8,9 @@ TagManager:
   - SwapRight
   - SwapLeft
   - EnemyBullet
+  - SuicideBomber
+  - Enemy
+  - EnemyShield
   layers:
   - Default
   - TransparentFX

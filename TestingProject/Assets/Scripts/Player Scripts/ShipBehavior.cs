@@ -92,7 +92,6 @@ public class ShipBehavior : MonoBehaviour {
                     endTouchPosition = Input.GetTouch(0).position;
                     if (endTouchPosition.x < startTouchPosition.x && boolPlayerTouched == false && boolLeft == true && Mathf.Abs(endTouchPosition.x - startTouchPosition.x) > 100)
                     {
-
                         DestoryAllBullet();
                         left.SetActive(false);
                         right.SetActive(true);
@@ -101,12 +100,10 @@ public class ShipBehavior : MonoBehaviour {
                     }
                     if (endTouchPosition.x > startTouchPosition.x && boolPlayerTouched == false && boolLeft == false && Mathf.Abs(endTouchPosition.x - startTouchPosition.x) > 100)
                     {
-
                         DestoryAllBullet();
                         left.SetActive(true);
                         right.SetActive(false);
                         boolLeft = true;
-
                     }
                 }
                 rb.velocity = Vector2.zero;
@@ -136,17 +133,25 @@ public class ShipBehavior : MonoBehaviour {
         }
         else if (other.gameObject.tag == "EnemyBullet")
         {
-            takeDamage(other);
+            takeDamage(other, 1);
+        }
+        else if (other.gameObject.tag == "SuicideBomber")
+        {
+            takeDamage(other, 5);
+        }
+        else if (other.gameObject.tag == "Enemy")
+        {
+            takeDamage(other, 5);
         }
 
     }
 
-    private void takeDamage(Collider2D other)
+    private void takeDamage(Collider2D other, int intDamageDone)
     {
         if (Time.time >= fltInvincibilityTimer)
         {
             Destroy(other.gameObject);
-            intLife--;
+            intLife = intLife - intDamageDone;
             if (intLife <= 0)
             {
                 gameOver();
