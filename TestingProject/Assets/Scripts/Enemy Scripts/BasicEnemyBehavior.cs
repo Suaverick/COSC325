@@ -37,6 +37,7 @@ public class BasicEnemyBehavior : MonoBehaviour
         if (other.gameObject.tag == "Bullet")
         {
             ScoreManager.instance.AddPoint();
+            SwapBar.instance.IncrementProgress(10f);
             Destroy(other.gameObject);
             Destroy(gameObject);
 
