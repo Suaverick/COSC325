@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class ShipBehavior : MonoBehaviour {
 
@@ -36,6 +37,7 @@ public class ShipBehavior : MonoBehaviour {
     private bool boolPlayerTouched = false;
 
     private int intLife = 3;
+    public HealthBar healthBar;
 
     // Start is called before the first frame update
     void Start()
@@ -181,5 +183,8 @@ public class ShipBehavior : MonoBehaviour {
         Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
+
+    
+
 
 }
