@@ -10,7 +10,7 @@ public class BasicEnemyBehavior : MonoBehaviour
     public Transform basicEnemy;
     private Vector3 spawnPosition;
     public float fltBulletFireRate;
-    private float fltMoveSpeed = 2f;
+    private float fltMoveSpeed = 8f;
 
     private float fltTimer = 0;
 

@@ -11,6 +11,7 @@ TagManager:
   - SuicideBomber
   - Enemy
   - EnemyShield
+  - Missle
   layers:
   - Default
   - TransparentFX
