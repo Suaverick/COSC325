@@ -15,6 +15,10 @@ public class ShipBehavior : MonoBehaviour {
     public Transform player;
     public GameObject gameOverUI;
     private GameObject[] bullets;
+    
+ 
+    
+    
 
     // Collision and Game Object data for bullets
     public Transform shootingPoint;
@@ -51,6 +55,7 @@ public class ShipBehavior : MonoBehaviour {
     void Update()
     {
         ShipPosition();
+                
     }
 
     void ShipPosition()
@@ -90,16 +95,18 @@ public class ShipBehavior : MonoBehaviour {
                 if (!pauseMenuUI.activeInHierarchy)
                 {
                     endTouchPosition = Input.GetTouch(0).position;
-                    if (endTouchPosition.x < startTouchPosition.x && boolPlayerTouched == false && boolLeft == true && Mathf.Abs(endTouchPosition.x - startTouchPosition.x) > 100)
+                    if (endTouchPosition.x < startTouchPosition.x && boolPlayerTouched == false && boolLeft == true && Mathf.Abs(endTouchPosition.x - startTouchPosition.x) > 100 && SwapBar.instance.slider.value == 100)
                     {
+                        SwapBar.instance.slider.value = 0;
                         DestoryAllBullet();
                         left.SetActive(false);
                         right.SetActive(true);
                         boolLeft = false;
 
                     }
-                    if (endTouchPosition.x > startTouchPosition.x && boolPlayerTouched == false && boolLeft == false && Mathf.Abs(endTouchPosition.x - startTouchPosition.x) > 100)
+                    if (endTouchPosition.x > startTouchPosition.x && boolPlayerTouched == false && boolLeft == false && Mathf.Abs(endTouchPosition.x - startTouchPosition.x) > 100 && SwapBar.instance.slider.value == 100)
                     {
+                        SwapBar.instance.slider.value = 0;
                         DestoryAllBullet();
                         left.SetActive(true);
                         right.SetActive(false);
@@ -197,5 +204,8 @@ public class ShipBehavior : MonoBehaviour {
         DestroyBullets("Bullet");
         DestroyBullets("EnemyBullet");
     }
+
+
+
 
 }
