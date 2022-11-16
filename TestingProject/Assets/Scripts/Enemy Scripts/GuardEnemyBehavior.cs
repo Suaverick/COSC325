@@ -2,17 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BasicEnemyBehavior : MonoBehaviour
+public class GuardEnemyBehavior : MonoBehaviour
 {
 
-    public Transform shootingPoint;
-    public GameObject bulletPrefab;
-    public Transform basicEnemy;
+    public GameObject guard;
+    public GameObject follow;
+
     private Vector3 spawnPosition;
-    public float fltBulletFireRate;
+
+    public float fltSpeed = 8;
     private float fltMoveSpeed = 8f;
 
-    private float fltTimer = 0;
+    private Vector2 enemyLocation;
 
     // Start is called before the first frame update
     void Start()
@@ -29,26 +30,14 @@ public class BasicEnemyBehavior : MonoBehaviour
             Vector3 newPos = Vector3.MoveTowards(gameObject.transform.position, spawnPosition, fltMoveSpeed * Time.deltaTime);
             gameObject.transform.position = newPos;
         }
-        if (gameObject.transform.position == spawnPosition) bulletBehavior(fltBulletFireRate);
-    }
-
-    public void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Bullet")
+        if (!guard.activeInHierarchy)
         {
-            ScoreManager.instance.AddPoint();
-            Destroy(other.gameObject);
             Destroy(gameObject);
-
         }
-    }
-
-    void bulletBehavior(float fltFireRate)
-    {
-        if (Time.time >= fltTimer)
+        if (follow != null)
         {
-            Instantiate(bulletPrefab, shootingPoint.position, transform.rotation, basicEnemy);
-            fltTimer = Time.time + fltFireRate;
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(follow.transform.position.x, transform.position.y), fltSpeed * Time.deltaTime);
+            enemyLocation = follow.transform.position;
         }
     }
 
