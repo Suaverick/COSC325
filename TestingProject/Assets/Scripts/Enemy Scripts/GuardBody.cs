@@ -23,13 +23,17 @@ public class GuardBody : MonoBehaviour
     {
         if (other.gameObject.tag == "Bullet")
         {
-            takeDamage(other, 1);
+            Destroy(other.gameObject);
+            takeDamage(1);
+        }
+        if (other.gameObject.tag == "SpaceBossWave")
+        {
+            takeDamage(200);
         }
     }
 
-    public void takeDamage(Collider2D other, int intDamageTaken)
+    public void takeDamage(int intDamageTaken)
     {
-        Destroy(other.gameObject);
         intHealth = intHealth - intDamageTaken;
         if (intHealth <= 0)
         {

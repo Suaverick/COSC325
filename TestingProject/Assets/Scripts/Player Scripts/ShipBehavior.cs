@@ -36,7 +36,7 @@ public class ShipBehavior : MonoBehaviour {
     private bool boolLeft = true;
     private bool boolPlayerTouched = false;
 
-    private int intLife = 3;
+    private int intLife = 100;
 
     // Start is called before the first frame update
     void Start()
@@ -89,7 +89,7 @@ public class ShipBehavior : MonoBehaviour {
                 if (!pauseMenuUI.activeInHierarchy)
                 {
                     endTouchPosition = Input.GetTouch(0).position;
-                    if (endTouchPosition.x < startTouchPosition.x && boolPlayerTouched == false && boolLeft == true && Mathf.Abs(endTouchPosition.x - startTouchPosition.x) > 100 && SwapBar.instance.slider.value == 100)
+                    if (endTouchPosition.x < startTouchPosition.x && boolPlayerTouched == false && boolLeft == true &&  Mathf.Abs(endTouchPosition.x - startTouchPosition.x) > 100 && SwapBar.instance.slider.value == 100)
                     {
                         SwapBar.instance.slider.value = 0;
                         DestoryAllBullet();
@@ -100,7 +100,7 @@ public class ShipBehavior : MonoBehaviour {
                     }
                     if (endTouchPosition.x > startTouchPosition.x && boolPlayerTouched == false && boolLeft == false && Mathf.Abs(endTouchPosition.x - startTouchPosition.x) > 100 && SwapBar.instance.slider.value == 100)
                     {
-                        SwapBar.instance.slider.value = 0;
+                        //SwapBar.instance.slider.value = 0;
                         DestoryAllBullet();
                         left.SetActive(true);
                         right.SetActive(false);
@@ -160,6 +160,10 @@ public class ShipBehavior : MonoBehaviour {
         {
             takeDamage(20);
         }
+        else if (other.gameObject.tag == "SpaceBossWave")
+        {
+            takeDamage(1);
+        }
 
     }
 
@@ -200,9 +204,12 @@ public class ShipBehavior : MonoBehaviour {
     public void DestroyBullets(string tag)
     {
         bullets = GameObject.FindGameObjectsWithTag(tag);
-        for(int i = 0; i < bullets.Length; i++)
+        if (bullets.Length != 0)
         {
-            Destroy(bullets[i]);
+            for (int i = 0; i < bullets.Length; i++)
+            {
+                Destroy(bullets[i]);
+            }
         }
     }
 
@@ -210,6 +217,9 @@ public class ShipBehavior : MonoBehaviour {
     {
         DestroyBullets("Bullet");
         DestroyBullets("EnemyBullet");
+        DestroyBullets("EnemyBeam");
+        DestroyBullets("Missle");
+        DestroyBullets("SpaceBossWave");
     }
 
 }

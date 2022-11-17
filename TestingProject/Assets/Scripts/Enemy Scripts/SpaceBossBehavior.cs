@@ -7,6 +7,7 @@ public class SpaceBossBehavior : MonoBehaviour
 
     public GameObject misslePrefab;
     public GameObject bossBeam;
+    public GameObject bossWave;
     private GameObject[] beams;
     public GameObject guard;
 
@@ -22,6 +23,8 @@ public class SpaceBossBehavior : MonoBehaviour
     public Transform beamPoint3;
     public Transform beamPoint4;
     public Transform beamPoint5;
+
+    public Transform wavePoint;
 
     public Transform finalPhase;
 
@@ -46,6 +49,7 @@ public class SpaceBossBehavior : MonoBehaviour
     private bool bool2to3 = false;
     private bool boolTransitionSwitch = false;
     private bool boolGuardsSpawned = false;
+    private bool boolOneWave = false;
 
     private bool testSwitch = false;
 
@@ -69,6 +73,10 @@ public class SpaceBossBehavior : MonoBehaviour
         if (boolPhase2) phase2();
         if (bool2to3) phase2to3();
         if (boolPhase3) phase3();
+        if (!gameObject.activeSelf)
+        {
+            Debug.Log("Not active");
+        }
     }
 
     void phase1()
@@ -113,7 +121,7 @@ public class SpaceBossBehavior : MonoBehaviour
 
     void phase2()
     {
-       if (!boolPatternOn)
+        if (!boolPatternOn)
         {
             StartCoroutine(phase2pattern());
         }
@@ -177,10 +185,6 @@ public class SpaceBossBehavior : MonoBehaviour
 
     void phase3()
     {
-        if (!boolGuardsSpawned)
-        {
-            spawnGuards();
-        }
         if (!boolPatternAndMissleOn)
         {
             StartCoroutine(phase3Pattern());
@@ -216,16 +220,31 @@ public class SpaceBossBehavior : MonoBehaviour
     private IEnumerator phase3Pattern()
     {
         boolPatternAndMissleOn = true;
-        beamAndMissleBehaviorCall(true, false, true, false, true);
-        yield return new WaitForSeconds(fltPatternTime * 2);
-        beamAndMissleBehaviorCall(true, false, true, false, true);
-        yield return new WaitForSeconds(fltPatternTime * 2);
-        beamAndMissleBehaviorCall(true, true, false, true, true);
-        yield return new WaitForSeconds(fltPatternTime * 2);
-        beamAndMissleBehaviorCall(true, false, false, false, true);
-        yield return new WaitForSeconds(fltPatternTime * 2);
-        beamAndMissleBehaviorCall(false, false, true, false, false);
-        yield return new WaitForSeconds(fltPatternTime * 2);
+        if (!bool2to3)
+        {
+            beamAndMissleBehaviorCall(true, false, true, false, true);
+            yield return new WaitForSeconds(fltPatternTime * 2);
+        }
+        if (!bool2to3)
+        {
+            beamAndMissleBehaviorCall(true, false, true, false, true);
+            yield return new WaitForSeconds(fltPatternTime * 2);
+        }
+        if (!bool2to3)
+        {
+            beamAndMissleBehaviorCall(true, true, false, true, true);
+            yield return new WaitForSeconds(fltPatternTime * 2);
+        }
+        if (!bool2to3)
+        {
+            beamAndMissleBehaviorCall(true, false, false, false, true);
+            yield return new WaitForSeconds(fltPatternTime * 2);
+        }
+        if (!bool2to3)
+        {
+            beamAndMissleBehaviorCall(false, false, true, false, false);
+            yield return new WaitForSeconds(fltPatternTime * 2);
+        }
         boolPatternAndMissleOn = false;
     }
 
@@ -238,19 +257,40 @@ public class SpaceBossBehavior : MonoBehaviour
 
     void phase1to2()
     {
+        if (!boolGuardsSpawned)
+        {
+            spawnGuards();
+        }
         if (!boolTransitionSwitch)
         {
+            StopAllCoroutines();
             StartCoroutine(phaseTransition());
         }
     }
 
     void phase2to3()
     {
+        if (!boolOneWave)
+        {
+            boolOneWave = true;
+            Instantiate(bossWave, wavePoint.position, bossWave.transform.rotation, wavePoint);
+        }
         if (!boolTransitionSwitch)
         {
+            destroyBeams();
+            StopAllCoroutines();
             StartCoroutine(phaseTransition2());
         }
     }
+
+    bool checkIfActive()
+    {
+        if (gameObject.activeSelf)
+        {
+            return true;
+        }
+        else return false;
+    } 
 
     private IEnumerator phaseTransition()
     {

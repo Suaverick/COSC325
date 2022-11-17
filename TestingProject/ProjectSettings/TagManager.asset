@@ -14,6 +14,7 @@ TagManager:
   - Missle
   - EnemyBeam
   - Boss
+  - SpaceBossWave
   layers:
   - Default
   - TransparentFX

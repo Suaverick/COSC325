@@ -187,7 +187,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
-  m_Children: []
+  m_Children:
+  - {fileID: 5000862980355385052}
   m_Father: {fileID: 4261433298434740601}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -202,8 +203,8 @@ GameObject:
   - component: {fileID: 4261433298434740601}
   - component: {fileID: 4261433298434740602}
   - component: {fileID: 4261433298434740603}
-  - component: {fileID: 4261433298434740604}
   - component: {fileID: 4261433298434740600}
+  - component: {fileID: 8701584415270172541}
   m_Layer: 0
   m_Name: SpaceBoss
   m_TagString: Enemy
@@ -302,7 +303,39 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!60 &4261433298434740604
+--- !u!114 &4261433298434740600
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4261433298434740605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 559bfc7f20a0fae4591bfbdaa6a2fbc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  misslePrefab: {fileID: 7596862541741071212, guid: 563589c6926748d4883dc8b65af9c742, type: 3}
+  bossBeam: {fileID: 4324160368956129727, guid: c7b75486b8565d14282d2850e22a1b57, type: 3}
+  bossWave: {fileID: 0}
+  guard: {fileID: 1109637459756028851, guid: cefb463f767c3f94b9af01a8fe8fda70, type: 3}
+  shootingPoint1: {fileID: 4261433298851921931}
+  shootingPoint2: {fileID: 4261433299097566294}
+  shootingPoint3: {fileID: 4261433297889278221}
+  shootingPoint4: {fileID: 4261433299123273747}
+  beamPoint1: {fileID: 4261433299173327431}
+  beamPoint2: {fileID: 4261433298705350747}
+  beamPoint3: {fileID: 4261433297802772155}
+  beamPoint4: {fileID: 4261433298350959223}
+  beamPoint5: {fileID: 4261433297741825949}
+  wavePoint: {fileID: 0}
+  finalPhase: {fileID: 4261433298415889066}
+  fltBulletFireRate: 0.3
+  intMisslesShot: 0
+  intHealth: 100
+  colorToTurnTo: {r: 0, g: 0, b: 0, a: 1}
+  colorToTurnBackTo: {r: 1, g: 1, b: 1, a: 1}
+--- !u!60 &8701584415270172541
 PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -327,56 +360,86 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 0.5}
-      - {x: -0.15234375, y: 0.47265625}
-      - {x: -0.29296875, y: 0.40234375}
-      - {x: -0.40234375, y: 0.29296875}
-      - {x: -0.47265625, y: 0.15234375}
-      - {x: -0.5, y: 0}
-      - {x: -0.47265625, y: -0.15234375}
-      - {x: -0.40234375, y: -0.29296875}
-      - {x: -0.29296875, y: -0.40234375}
-      - {x: -0.15234375, y: -0.47265625}
-      - {x: 0, y: -0.5}
-      - {x: 0.15234375, y: -0.47265625}
-      - {x: 0.29296875, y: -0.40234375}
-      - {x: 0.40234375, y: -0.29296875}
-      - {x: 0.47265625, y: -0.15234375}
-      - {x: 0.5, y: 0}
-      - {x: 0.47265625, y: 0.15234375}
-      - {x: 0.40234375, y: 0.29296875}
-      - {x: 0.29296875, y: 0.40234375}
-      - {x: 0.15234375, y: 0.47265625}
---- !u!114 &4261433298434740600
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4261433298434740605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 559bfc7f20a0fae4591bfbdaa6a2fbc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  misslePrefab: {fileID: 7596862541741071212, guid: 563589c6926748d4883dc8b65af9c742, type: 3}
-  bossBeam: {fileID: 4324160368956129727, guid: c7b75486b8565d14282d2850e22a1b57, type: 3}
-  guard: {fileID: 1109637459756028851, guid: cefb463f767c3f94b9af01a8fe8fda70, type: 3}
-  shootingPoint1: {fileID: 4261433298851921931}
-  shootingPoint2: {fileID: 4261433299097566294}
-  shootingPoint3: {fileID: 4261433297889278221}
-  shootingPoint4: {fileID: 4261433299123273747}
-  beamPoint1: {fileID: 4261433299173327431}
-  beamPoint2: {fileID: 4261433298705350747}
-  beamPoint3: {fileID: 4261433297802772155}
-  beamPoint4: {fileID: 4261433298350959223}
-  beamPoint5: {fileID: 4261433297741825949}
-  finalPhase: {fileID: 4261433298415889066}
-  fltBulletFireRate: 0.3
-  intMisslesShot: 0
-  intHealth: 100
-  colorToTurnTo: {r: 0, g: 0, b: 0, a: 1}
-  colorToTurnBackTo: {r: 1, g: 1, b: 1, a: 1}
+    - - {x: 0.81, y: -2.0249999}
+      - {x: 1, y: -1.985}
+      - {x: 1.11, y: -1.9549999}
+      - {x: 1.18, y: -1.935}
+      - {x: 1.28, y: -1.905}
+      - {x: 1.43, y: -1.8549999}
+      - {x: 1.5999999, y: -1.785}
+      - {x: 1.9, y: -1.645}
+      - {x: 2.1299999, y: -1.505}
+      - {x: 2.3899999, y: -1.305}
+      - {x: 2.6799998, y: -1.005}
+      - {x: 2.8, y: -0.835}
+      - {x: 2.95, y: -0.525}
+      - {x: 3.01, y: -0.36499998}
+      - {x: 3.02, y: -0.285}
+      - {x: 3.05, y: -0.095}
+      - {x: 3.05, y: 0.105}
+      - {x: 3.03, y: 0.195}
+      - {x: 3.02, y: 0.295}
+      - {x: 3, y: 0.375}
+      - {x: 2.99, y: 0.405}
+      - {x: 2.95, y: 0.53499997}
+      - {x: 2.8799999, y: 0.705}
+      - {x: 2.8, y: 0.835}
+      - {x: 2.71, y: 0.97499996}
+      - {x: 2.61, y: 1.095}
+      - {x: 2.3799999, y: 1.3149999}
+      - {x: 2.1699998, y: 1.495}
+      - {x: 2.02, y: 1.5849999}
+      - {x: 1.9, y: 1.655}
+      - {x: 1.67, y: 1.765}
+      - {x: 1.43, y: 1.865}
+      - {x: 1.28, y: 1.915}
+      - {x: 1.18, y: 1.9449999}
+      - {x: 0.90999997, y: 2.0149999}
+      - {x: 0.76, y: 2.0449998}
+      - {x: 0.56, y: 2.075}
+      - {x: 0.48, y: 2.085}
+      - {x: -0.53, y: 2.085}
+      - {x: -0.61, y: 2.075}
+      - {x: -0.81, y: 2.0449998}
+      - {x: -0.96, y: 2.0149999}
+      - {x: -1.24, y: 1.9549999}
+      - {x: -1.48, y: 1.875}
+      - {x: -1.67, y: 1.785}
+      - {x: -1.9799999, y: 1.635}
+      - {x: -2.08, y: 1.5749999}
+      - {x: -2.19, y: 1.505}
+      - {x: -2.3999999, y: 1.345}
+      - {x: -2.6299999, y: 1.125}
+      - {x: -2.76, y: 0.965}
+      - {x: -2.87, y: 0.79499996}
+      - {x: -2.9199998, y: 0.705}
+      - {x: -2.97, y: 0.60499996}
+      - {x: -3.02, y: 0.465}
+      - {x: -3.07, y: 0.265}
+      - {x: -3.08, y: 0.195}
+      - {x: -3.08, y: -0.195}
+      - {x: -3.07, y: -0.255}
+      - {x: -3.05, y: -0.39499998}
+      - {x: -2.97, y: -0.585}
+      - {x: -2.9199998, y: -0.705}
+      - {x: -2.83, y: -0.85499996}
+      - {x: -2.76, y: -0.955}
+      - {x: -2.6399999, y: -1.115}
+      - {x: -2.3999999, y: -1.3349999}
+      - {x: -2.19, y: -1.495}
+      - {x: -2.08, y: -1.5649999}
+      - {x: -1.9799999, y: -1.625}
+      - {x: -1.78, y: -1.7249999}
+      - {x: -1.67, y: -1.775}
+      - {x: -1.4699999, y: -1.8549999}
+      - {x: -1.3299999, y: -1.905}
+      - {x: -1.16, y: -1.9549999}
+      - {x: -0.96, y: -2.0049999}
+      - {x: -0.68, y: -2.055}
+      - {x: -0.44, y: -2.085}
+      - {x: 0.39, y: -2.085}
+      - {x: 0.47, y: -2.075}
+      - {x: 0.64, y: -2.055}
 --- !u!1 &4261433298705350748
 GameObject:
   m_ObjectHideFlags: 0
@@ -565,5 +628,36 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4261433297780712902}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &7851654253247165691
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5000862980355385052}
+  m_Layer: 0
+  m_Name: WaveSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5000862980355385052
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7851654253247165691}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4261433298415889066}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
