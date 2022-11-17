@@ -15,10 +15,6 @@ public class ShipBehavior : MonoBehaviour {
     public Transform player;
     public GameObject gameOverUI;
     private GameObject[] bullets;
-    
- 
-    
-    
 
     // Collision and Game Object data for bullets
     public Transform shootingPoint;
@@ -45,17 +41,14 @@ public class ShipBehavior : MonoBehaviour {
     // Start is called before the first frame update
     void Start()
     {
-
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
-
     }
 
     // Update is called once per frame
     void Update()
     {
         ShipPosition();
-                
     }
 
     void ShipPosition()
@@ -88,6 +81,7 @@ public class ShipBehavior : MonoBehaviour {
                 if(boolPlayerTouched)
                 {
                     bulletBehavior(fltBulletFireRate);
+                    rb.velocity = Vector2.zero;
                 }
             }
             if (touch.phase == TouchPhase.Ended)
@@ -140,33 +134,46 @@ public class ShipBehavior : MonoBehaviour {
         }
         else if (other.gameObject.tag == "EnemyBullet")
         {
-            takeDamage(other, 1);
+            Destroy(other.gameObject);
+            takeDamage(1);
         }
         else if (other.gameObject.tag == "SuicideBomber")
         {
-            takeDamage(other, 5);
+            Destroy(other.gameObject);
+            takeDamage(5);
         }
         else if (other.gameObject.tag == "Enemy")
         {
-            takeDamage(other, 5);
+            Destroy(other.gameObject);
+            takeDamage(5);
+        }
+        else if (other.gameObject.tag == "Missle")
+        {
+            Destroy(other.gameObject);
+            takeDamage(1);
+        }
+        else if (other.gameObject.tag == "EnemyBeam")
+        {
+            takeDamage(1);
+        }
+        else if (other.gameObject.tag == "Boss")
+        {
+            takeDamage(20);
         }
 
     }
 
-    private void takeDamage(Collider2D other, int intDamageDone)
+    private void takeDamage(int intDamageDone)
     {
         if (Time.time >= fltInvincibilityTimer)
         {
-            Destroy(other.gameObject);
             intLife = intLife - intDamageDone;
             if (intLife <= 0)
             {
                 gameOver();
-
             }
-            fltInvincibilityTimer = Time.time + 3f;
+            fltInvincibilityTimer = Time.time + 1f;
         }
-        
     }
 
     private void gameOver()
@@ -204,8 +211,5 @@ public class ShipBehavior : MonoBehaviour {
         DestroyBullets("Bullet");
         DestroyBullets("EnemyBullet");
     }
-
-
-
 
 }

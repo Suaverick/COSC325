@@ -12,6 +12,8 @@ TagManager:
   - Enemy
   - EnemyShield
   - Missle
+  - EnemyBeam
+  - Boss
   layers:
   - Default
   - TransparentFX
