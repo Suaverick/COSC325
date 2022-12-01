@@ -16,7 +16,7 @@ public class SpaceBossWave : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x + 0.05f, gameObject.transform.localScale.y + 0.05f, gameObject.transform.localScale.z);
+        gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x + 0.025f, gameObject.transform.localScale.y + 0.025f, gameObject.transform.localScale.z);
         if(gameObject.transform.localScale.x >= 10)
         {
             Destroy(gameObject);
