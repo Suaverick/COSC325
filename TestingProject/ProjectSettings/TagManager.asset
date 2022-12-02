@@ -12,6 +12,7 @@ TagManager:
   - Enemy
   - EnemyShield
   - Missle
+  - UpgradedBullet
   - EnemyBeam
   - Boss
   - SpaceBossWave

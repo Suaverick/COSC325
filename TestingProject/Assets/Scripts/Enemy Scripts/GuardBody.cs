@@ -23,8 +23,13 @@ public class GuardBody : MonoBehaviour
     {
         if (other.gameObject.tag == "Bullet")
         {
-            Destroy(other.gameObject);
             takeDamage(1);
+            Destroy(other.gameObject);
+        } 
+        if(other.gameObject.tag == "UpgradedBullet")
+        {
+            takeDamage(2);
+            Destroy(other.gameObject);
         }
         if (other.gameObject.tag == "SpaceBossWave")
         {
