@@ -40,16 +40,9 @@ public class BasicEnemyBehavior : MonoBehaviour
             SwapBar.instance.IncrementProgress(10f);
             Destroy(other.gameObject);
             Destroy(gameObject);
-
-        } else if(other.gameObject.tag == "UpgradedBullet")
-        {
-            ScoreManager.instance.AddPoint();
-            SwapBar.instance.IncrementProgress(10f);
-            Destroy(other.gameObject);
-            Destroy(gameObject);
         }
     }
-
+    
     void bulletBehavior(float fltFireRate)
     {
         if (Time.time >= fltTimer)

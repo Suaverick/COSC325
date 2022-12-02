@@ -20,7 +20,19 @@ public class BasicEnemyBullet : MonoBehaviour
     {
         rb.velocity = -transform.up * fltSpeed;          // The bullets velocity is set to moving down * the amount of speed given to the bullet
         // If the position of the bullet is greater than the screens y value, it destroys the bullet
-        if (transform.position.y < -screenBounds.y)
+        if (transform.position.y < -screenBounds.y - 1)
+        {
+            Destroy(this.gameObject);
+        }
+        if (transform.position.y > screenBounds.y + 1)
+        {
+            Destroy(this.gameObject);
+        }
+        if (transform.position.x < -screenBounds.x - 1)
+        {
+            Destroy(this.gameObject);
+        }
+        if (transform.position.x > screenBounds.x + 1)
         {
             Destroy(this.gameObject);
         }

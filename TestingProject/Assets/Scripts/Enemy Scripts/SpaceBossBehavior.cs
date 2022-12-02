@@ -37,7 +37,7 @@ public class SpaceBossBehavior : MonoBehaviour
     private float fltPatternTime = 1.0f;
 
     public int intMisslesShot;
-    public int intHealth = 100;
+    private int intHealth = 300;
 
     private bool boolPhase1 = false;
     private bool boolPhase2 = false;
@@ -73,10 +73,6 @@ public class SpaceBossBehavior : MonoBehaviour
         if (boolPhase2) phase2();
         if (bool2to3) phase2to3();
         if (boolPhase3) phase3();
-        if (!gameObject.activeSelf)
-        {
-            Debug.Log("Not active");
-        }
     }
 
     void phase1()
@@ -193,13 +189,11 @@ public class SpaceBossBehavior : MonoBehaviour
 
     void spawnGuards()
     {
-        SpawnGuard(-2.55f, 1);
-        SpawnGuard(-1.7f, 1);
-        SpawnGuard(-.85f, 1);
+        SpawnGuard(-2f, 1);
+        SpawnGuard(-1f, 1);
         SpawnGuard(0, 1);
-        SpawnGuard(.85f, 1);
-        SpawnGuard(1.7f, 1);
-        SpawnGuard(2.55f, 1);
+        SpawnGuard(1f, 1);
+        SpawnGuard(2f, 1);
         boolGuardsSpawned = true;
     }
 
@@ -329,12 +323,12 @@ public class SpaceBossBehavior : MonoBehaviour
     {
         Destroy(other.gameObject);
         intHealth = intHealth - intDamageTaken;
-        if (intHealth <= 67 && boolPhase1)
+        if (intHealth <= 200 && boolPhase1)
         {
             boolPhase1 = false;
             bool1to2 = true;
         }
-        if (intHealth <= 33 && boolPhase2)
+        if (intHealth <= 100 && boolPhase2)
         {
             boolPhase2 = false;
             bool2to3 = true;

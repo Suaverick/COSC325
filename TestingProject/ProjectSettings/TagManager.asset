@@ -16,6 +16,10 @@ TagManager:
   - EnemyBeam
   - Boss
   - SpaceBossWave
+  - Matter
+  - DecoyMatter
+  - BossSpinner
+  - SpinnerDecoy
   layers:
   - Default
   - TransparentFX
