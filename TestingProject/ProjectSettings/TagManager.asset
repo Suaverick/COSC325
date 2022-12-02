@@ -13,6 +13,9 @@ TagManager:
   - EnemyShield
   - Missle
   - UpgradedBullet
+  - EnemyBeam
+  - Boss
+  - SpaceBossWave
   layers:
   - Default
   - TransparentFX

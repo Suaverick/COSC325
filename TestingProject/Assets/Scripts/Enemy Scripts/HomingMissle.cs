@@ -13,6 +13,8 @@ public class HomingMissle : MonoBehaviour
     public float fltSpeed = 5f;
     public float fltRotateSpeed = 200f;
 
+    public int intLife = 1;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,4 +43,13 @@ public class HomingMissle : MonoBehaviour
             rb.velocity = -transform.up * fltSpeed;
         }
     }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Bullet")
+        {
+            Destroy(gameObject);
+        }
+    }
+
 }
