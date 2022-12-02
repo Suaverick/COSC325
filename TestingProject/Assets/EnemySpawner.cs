@@ -14,6 +14,7 @@ public class EnemySpawner : MonoBehaviour
         public int count;
         public float rate;
     }
+    private int endGame = 0;
     public Transform spawner;
     private Vector2 location;
 
@@ -54,7 +55,16 @@ public class EnemySpawner : MonoBehaviour
                 //Spawn wave
                //UnityEngine.Debug.Log(nextWave);
                // UnityEngine.Debug.Log("Enemies Incoming");
-                StartCoroutine(SpawnWave(waves[nextWave]));
+               if(endGame == waves.Length)
+                {
+                    return;
+                }
+                else
+                {
+                    StartCoroutine(SpawnWave(waves[nextWave]));
+                    endGame++;
+                }
+                
             }    
         }
         else
@@ -67,14 +77,14 @@ public class EnemySpawner : MonoBehaviour
     {
         state = SpawnState.spawning;
         UnityEngine.Debug.Log("Spawning Wave: " + wave.name);
-        location.Set(0, 3f);
+        location.Set(0, 11f);
 
         //Spawner
 
         for (int i = 0; i < wave.count; i++)
         {
             SpawnEnemy(wave.enemy, location);
-            location.Set(0, 3f + 1);
+            location.Set(0, 9f + i);
         }
 
 
