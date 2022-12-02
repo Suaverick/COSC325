@@ -24,6 +24,9 @@ public class GuardBody : MonoBehaviour
         if (other.gameObject.tag == "Bullet")
         {
             takeDamage(other, 1);
+        } else if(other.gameObject.tag == "UpgradedBullet")
+        {
+            takeDamage(other, 2);
         }
     }
 
