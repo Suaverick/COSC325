@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 5435330987344340099}
   m_Layer: 0
   m_Name: SpaceBoss
-  m_TagString: Enemy
+  m_TagString: SpaceBoss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -318,7 +318,7 @@ MonoBehaviour:
   misslePrefab: {fileID: 7596862541741071212, guid: 563589c6926748d4883dc8b65af9c742, type: 3}
   bossBeam: {fileID: 4324160368956129727, guid: c7b75486b8565d14282d2850e22a1b57, type: 3}
   bossWave: {fileID: 4524193761996841134, guid: e58257b900f14084c93b3123b759a6f3, type: 3}
-  guard: {fileID: 1109637459756028851, guid: cefb463f767c3f94b9af01a8fe8fda70, type: 3}
+  guard: {fileID: 4915613701966308028, guid: 7d0150f514dcad943907d218d8c2c711, type: 3}
   shootingPoint1: {fileID: 4261433298851921931}
   shootingPoint2: {fileID: 4261433299097566294}
   shootingPoint3: {fileID: 4261433297889278221}
@@ -332,6 +332,17 @@ MonoBehaviour:
   finalPhase: {fileID: 4261433298415889066}
   fltBulletFireRate: 0.3
   intMisslesShot: 0
+  boolPhase1: 0
+  boolPhase2: 0
+  boolPhase3: 0
+  boolWaitOn: 0
+  boolPatternOn: 0
+  boolPatternAndMissleOn: 0
+  bool1to2: 0
+  bool2to3: 0
+  boolTransitionSwitch: 0
+  boolGuardsSpawned: 0
+  boolOneWave: 0
   colorToTurnTo: {r: 0, g: 0, b: 0, a: 1}
   colorToTurnBackTo: {r: 1, g: 1, b: 1, a: 1}
 --- !u!60 &5435330987344340099

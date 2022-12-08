@@ -14,17 +14,17 @@ public class HellBossBehavior : MonoBehaviour
     private Vector2 spawnPosition;
     private Vector2 targetPosition;
 
-    private int intHealth = 100;
+    private int intHealth = 200;
 
     private float fltRotationAmount;
 
     private bool boolTeleport = false;
 
-    private bool boolPhase1 = false;
-    private bool bool1to2 = false;
-    private bool boolPhase2 = false;
-    private bool bool2to3 = false;
-    private bool boolPhase3 = false;
+    public bool boolPhase1 = false;
+    public bool bool1to2 = false;
+    public bool boolPhase2 = false;
+    public bool bool2to3 = false;
+    public bool boolPhase3 = false;
 
     private bool boolMatterOn = false;
     private bool boolLockedMatterOn = false;
@@ -159,12 +159,12 @@ public class HellBossBehavior : MonoBehaviour
             spawnSpinners();
         }
 
-        if (fltRotationAmount < 1440 && spinner.transform.localScale.y >= 0.3f)
+        if (fltRotationAmount < 1080 && spinner.transform.localScale.y >= 0.3f)
         {
             gameObject.transform.rotation = transform.rotation * Quaternion.Euler(0, 0, 1.5f);
             fltRotationAmount += 1.5f;
         }
-        else if (fltRotationAmount < 1440 && spinner.transform.localScale.y <= 0.3f)
+        else if (fltRotationAmount < 1080 && spinner.transform.localScale.y <= 0.3f)
         {
             // Do nothing
         }
@@ -172,7 +172,6 @@ public class HellBossBehavior : MonoBehaviour
         {
             if(!boolDecoySpinnersSpawned)
             {
-                Debug.Log("Made it here");
                 boolDecoySpinnersSpawned = true;
                 spawnDecoySpinners();
                 DestroyMatter("BossSpinner");
@@ -190,6 +189,16 @@ public class HellBossBehavior : MonoBehaviour
                 // Do nothing
             }
         }
+    }
+
+    public void phase1to2skip()
+    {
+        bool1to2 = false;
+        DestroyMatter("BossSpinner");
+        DestroyMatter("SpinnerDecoy");
+        DestroyMatter("DecoyMatter");
+        transform.rotation = transform.rotation * Quaternion.Euler(0, 0, 0);
+        boolPhase2 = true;
     }
 
     void phase2()
@@ -223,7 +232,7 @@ public class HellBossBehavior : MonoBehaviour
                 fltRotationAmount += 1.5f;
                 transform.position = Vector2.MoveTowards(transform.position, targetPosition, 4 * Time.deltaTime);
             }
-            else if (fltRotationAmount < 2520)
+            else if (fltRotationAmount < 2160)
             {
                 if (!boolTeleport)
                 {
@@ -245,6 +254,16 @@ public class HellBossBehavior : MonoBehaviour
         {
             // Do nothing
         }
+    }
+
+    public void phase2to3skip()
+    {
+        bool2to3 = false;
+        DestroyMatter("DecoyMatter");
+        gameObject.transform.position = spawnPosition;
+        transform.rotation = transform.rotation * Quaternion.Euler(0, 0, 0);
+        boolPhase3 = true;
+
     }
 
     void phase3()
@@ -278,18 +297,25 @@ public class HellBossBehavior : MonoBehaviour
                 takeDamage(other, 1);
             }
         }
+        if(other.CompareTag("UpgradedBullet"))
+        {
+            if (!bool1to2 && !bool2to3)
+            {
+                takeDamage(other, 2);
+            }
+        }
     }
 
     public void takeDamage(Collider2D other, int intDamageTaken)
     {
         Destroy(other.gameObject);
         intHealth = intHealth - intDamageTaken;
-        if (intHealth <= 67 && boolPhase1)
+        if (intHealth <= 133 && boolPhase1)
         {
             boolPhase1 = false;
             bool1to2 = true;
         }
-        if (intHealth <= 33 && boolPhase2)
+        if (intHealth <= 67 && boolPhase2)
         {
             boolPhase2 = false;
             bool2to3 = true;
