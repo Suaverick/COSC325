@@ -287,7 +287,7 @@ public class ShipBehavior : MonoBehaviour {
     }
 
     // When the player runs out of health
-    private void gameOver()
+    public void gameOver()
     {
         gameOverUI.SetActive(true);
         gameObject.transform.localScale = new Vector3(0, 0, 0);

@@ -8,14 +8,18 @@ public class WaveObserver : MonoBehaviour
 
     public GameObject leftSide;
     public GameObject rightSide;
+    public GameObject player;
 
     private bool boolLeft;
     private bool boolRight;
 
+    private bool boolLeftAcc = false;
+    private bool boolRightAcc = false;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
@@ -25,22 +29,24 @@ public class WaveObserver : MonoBehaviour
         updateRight();
         if(boolLeft && boolRight)
         {
-            SceneManager.LoadScene("Level Select");
+            player.GetComponent<ShipBehavior>().gameOver();
         }
     }
 
     void updateLeft()
     {
-        if (leftSide.GetComponent<EnemySpawner>().waveWon && leftSide.activeInHierarchy)
+        if (leftSide.GetComponent<EnemySpawner>().waveWon && leftSide.activeInHierarchy && boolLeftAcc)
         {
+            boolLeftAcc = true;
             boolLeft = true;
         }
     }
 
     void updateRight()
     {
-        if(rightSide.GetComponent<EnemySpawner>().waveWon && rightSide.activeInHierarchy)
+        if(rightSide.GetComponent<EnemySpawner>().waveWon && rightSide.activeInHierarchy && boolRightAcc)
         {
+            boolRightAcc = true;
             boolRight = true;
         }
     }

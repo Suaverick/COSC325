@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 153350590}
   - component: {fileID: 153350593}
   m_Layer: 5
-  m_Name: Level 2
+  m_Name: FinalLevel2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb6bc5448fa1fef47a65a5f8faf497d7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: Level 2
+  level: FinalLevel2
 --- !u!1 &477472856
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,11 +951,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3526512777564622113, guid: 14260e8eaa4c7a84db7394b412e40276, type: 3}
       propertyPath: m_Name
-      value: Level 1
+      value: FinalLevel1
       objectReference: {fileID: 0}
     - target: {fileID: 5272992616537245051, guid: 14260e8eaa4c7a84db7394b412e40276, type: 3}
       propertyPath: level
-      value: Level 1
+      value: FinalLevel1
       objectReference: {fileID: 0}
     - target: {fileID: 5506887158512511788, guid: 14260e8eaa4c7a84db7394b412e40276, type: 3}
       propertyPath: m_fontSize
@@ -1097,7 +1097,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5272992616537245051, guid: 14260e8eaa4c7a84db7394b412e40276, type: 3}
       propertyPath: level
-      value: SpaceBoss
+      value: BossLevel
       objectReference: {fileID: 0}
     - target: {fileID: 5506887158512511788, guid: 14260e8eaa4c7a84db7394b412e40276, type: 3}
       propertyPath: m_text
