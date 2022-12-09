@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class EliteEnemyWithGuardBehavior : MonoBehaviour
 {
+
+    // Only purpose of this class to handle the Enemy with Guard prefabs
+    // If the enenmy and guard prefab inside of the Enemy with guard prefab is dead, then destroy the Enemy with Guard ga object
+
     // Start is called before the first frame update
     void Start()
     {

@@ -18,12 +18,13 @@ public class GuardShield : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.transform.localScale == new Vector3(0, 0, 0))
+        if (gameObject.transform.localScale == new Vector3(0, 0, 0))   // If the current size of the sheild is 0, bring shield back up
         {
             shieldsOnline();
         }
     }
 
+    // When a bullet enters the collision box of the guard shield
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Bullet")
@@ -35,6 +36,7 @@ public class GuardShield : MonoBehaviour
         }
     }
 
+    // Function that handles damage and health calculations
     public void takeDamage(Collider2D other, double doubleDamageTaken)
     {
         Destroy(other.gameObject);
@@ -46,6 +48,7 @@ public class GuardShield : MonoBehaviour
         }
     }
 
+    // Turns the shield back on after a specified amoount of time has passed (fltOnline)
     public void shieldsOnline()
     {
         if (Time.time >= fltTimer)

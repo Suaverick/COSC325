@@ -5,19 +5,28 @@ using UnityEngine;
 public class HellBossBehavior : MonoBehaviour
 {
 
+    // Game Object variables for HellBoss
     public GameObject bossMatterBasic;
     public GameObject bossMatterDecoy;
     public GameObject bossMatterSpinner;
     public GameObject bossMatterSpinnerDecoy;
     public GameObject bossMatterLocked;
+    private GameObject spinner;
+    private GameObject decoySpinner;
 
+    private GameObject[] matter;
+
+    // Vectors for HellBoss
     private Vector2 spawnPosition;
     private Vector2 targetPosition;
 
+    // Health of the boss
     private int intHealth = 200;
 
+    // How much the boss rotates
     private float fltRotationAmount;
 
+    // All boolean switches needed for the boss
     private bool boolTeleport = false;
 
     public bool boolPhase1 = false;
@@ -33,17 +42,17 @@ public class HellBossBehavior : MonoBehaviour
     private bool boolDecoysSpawned2 = false;
     private bool boolDecoySpinnersSpawned = false;
 
-    private GameObject spinner;
-    private GameObject decoySpinner;
-
-    private GameObject[] matter;
-
     private bool boolAtPosition = false;
     private bool boolSwitch = false;
 
+    // Movement speed for the boss
     private float fltMoveSpeed = 2f;
 
+    // Needed starting position for the hell boss
     private Vector3 startPosition;
+
+    public AudioClip hitShot;
+    private AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -51,7 +60,7 @@ public class HellBossBehavior : MonoBehaviour
         //boolPhase1 = true;
         spawnPosition = new Vector2(transform.position.x, transform.position.y - 8f);
         targetPosition = new Vector2(transform.position.x, -15);
-
+        audioSource = GetComponent<AudioSource>();
         startPosition = gameObject.transform.position;
         startPosition.y = startPosition.y - 8f;
     }
@@ -59,12 +68,12 @@ public class HellBossBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.transform.position != startPosition && !boolAtPosition)
+        if (gameObject.transform.position != startPosition && !boolAtPosition)        // If hell boss is not at the correct position, move there
         {
             Vector3 newPos = Vector3.MoveTowards(gameObject.transform.position, startPosition, fltMoveSpeed * Time.deltaTime);
             gameObject.transform.position = newPos;
         }
-        if (gameObject.transform.position == startPosition)
+        if (gameObject.transform.position == startPosition)                          // If at the correct position, stop moving and set phase1 to active
         {
             if (!boolSwitch)
             {
@@ -80,6 +89,7 @@ public class HellBossBehavior : MonoBehaviour
         if (boolPhase3) phase3();
     }
 
+    // Spawns the basic form of matter that the boss shoots
     void spawnMatter()
     {
         Instantiate(bossMatterBasic, new Vector3(gameObject.transform.position.x + 2, gameObject.transform.position.y - 2f, gameObject.transform.position.z), new Quaternion(0, 0, 0, 0), gameObject.transform);
@@ -89,6 +99,7 @@ public class HellBossBehavior : MonoBehaviour
         Instantiate(bossMatterBasic, new Vector3(gameObject.transform.position.x - 2, gameObject.transform.position.y - 2f, gameObject.transform.position.z), new Quaternion(0, 0, 0, 0), gameObject.transform);
     }
 
+    // Spawns decoy matter that looks the exact same, but does not shoot any poison
     void spawnDecoys()
     {
         Instantiate(bossMatterDecoy, new Vector3(gameObject.transform.position.x + 2, gameObject.transform.position.y - 2f, gameObject.transform.position.z), new Quaternion(0, 0, 0, 0), gameObject.transform);
@@ -99,6 +110,7 @@ public class HellBossBehavior : MonoBehaviour
         DestroyMatter("Matter");
     }
 
+    // Spawns the matter spinners that shoot at the player
     void spawnSpinners()
     {
         // Bottom Half of Spinners
@@ -127,6 +139,7 @@ public class HellBossBehavior : MonoBehaviour
 
     }
 
+    // Spawns a decoy of the spinners that looks the exact same, but doesn't shoot
     void spawnDecoySpinners()
     {
         // Bottom Half of Spinners
@@ -155,6 +168,7 @@ public class HellBossBehavior : MonoBehaviour
 
     }
 
+    // Spawn a different type of matter where the poison locks to the player
     void spawnMatterLocked()
     {
         Instantiate(bossMatterLocked, new Vector3(gameObject.transform.position.x + 2, gameObject.transform.position.y - 2f, gameObject.transform.position.z), new Quaternion(0, 0, 0, 0), gameObject.transform);
@@ -164,6 +178,7 @@ public class HellBossBehavior : MonoBehaviour
         Instantiate(bossMatterLocked, new Vector3(gameObject.transform.position.x - 2, gameObject.transform.position.y - 2f, gameObject.transform.position.z), new Quaternion(0, 0, 0, 0), gameObject.transform);
     }
 
+    // Phase 1 for the boss
     void phase1()
     {
         if (!boolMatterOn) {
@@ -173,9 +188,10 @@ public class HellBossBehavior : MonoBehaviour
         }
     }
 
+    // Phase 1 to 2 transition
     public void phase1to2()
     {
-        if (!boolDecoysSpawned)
+        if (!boolDecoysSpawned)                     // If the decoys were spawned
         {
             boolDecoysSpawned = true;
             spawnDecoys();
@@ -184,18 +200,18 @@ public class HellBossBehavior : MonoBehaviour
             DestroyMatter("DecoyMatter");
         }
 
-        if (fltRotationAmount < 1080 && spinner.transform.localScale.y >= 0.8f)
+        if (fltRotationAmount < 1080 && spinner.transform.localScale.y >= 0.8f)                 // If the spinner has a scale of 0.8, begin rotating
         {
             gameObject.transform.rotation = transform.rotation * Quaternion.Euler(0, 0, 3f);
             fltRotationAmount += 3f;
         }
-        else if (fltRotationAmount < 1080 && spinner.transform.localScale.y <= 0.8f)
+        else if (fltRotationAmount < 1080 && spinner.transform.localScale.y <= 0.8f)           // If the spinner is 0.8 scale, but the boss hasn't finished rotating
         {
             // Do nothing
         }
         else
         {
-            if(!boolDecoySpinnersSpawned)
+            if(!boolDecoySpinnersSpawned)                               // If decoy spinners spawned
             {
                 boolDecoySpinnersSpawned = true;
                 spawnDecoySpinners();
@@ -203,7 +219,7 @@ public class HellBossBehavior : MonoBehaviour
                 DestroyMatter("BossSpinner");
             }
 
-            if (decoySpinner.transform.localScale.y <= 0.02f)
+            if (decoySpinner.transform.localScale.y <= 0.02f)          // If decoy spinner is less than a scale of 0.02f, go to phase 2
             {
                 DestroyMatter("SpinnerDecoy");
                 DestroyMatter("DecoyMatter");
@@ -217,6 +233,8 @@ public class HellBossBehavior : MonoBehaviour
         }
     }
 
+    // Used by observer
+    // Skips from the phase1to2 transition and goes straight to phase2
     public void phase1to2skip()
     {
         bool1to2 = false;
@@ -227,6 +245,7 @@ public class HellBossBehavior : MonoBehaviour
         boolPhase2 = true;
     }
 
+    // Phase 2 for the boss
     void phase2()
     {
 
@@ -241,6 +260,7 @@ public class HellBossBehavior : MonoBehaviour
         }
     }
 
+    // Phase 2 to 3 transition
     public void phase2to3()
     {
         if(!boolDecoysSpawned2)
@@ -250,11 +270,11 @@ public class HellBossBehavior : MonoBehaviour
             DestroyMatter("Matter");
             spawnSpinners();
         }
-        if (spinner.transform.localScale.y >= 0.3f) {
+        if (spinner.transform.localScale.y >= 0.3f) {     // If the spinner's scale is greater than 0.3f
             if (fltRotationAmount < 360)
             {
-                gameObject.transform.rotation = transform.rotation * Quaternion.Euler(0, 0, 1.5f);
-                fltRotationAmount += 1.5f;
+                gameObject.transform.rotation = transform.rotation * Quaternion.Euler(0, 0, 3f);
+                fltRotationAmount += 3f;
             }
             else if (fltRotationAmount >= 360 && fltRotationAmount < 1440)
             {
@@ -285,7 +305,8 @@ public class HellBossBehavior : MonoBehaviour
             // Do nothing
         }
     }
-
+    // Used by observer
+    // Skips to phase 3
     public void phase2to3skip()
     {
         bool2to3 = false;
@@ -296,6 +317,7 @@ public class HellBossBehavior : MonoBehaviour
 
     }
 
+    // Phase 3 of the boss
     void phase3()
     {
         if(!boolFinalPhaseOn)
@@ -306,6 +328,7 @@ public class HellBossBehavior : MonoBehaviour
         }
     }
 
+    // Destroy Matter with the specified tag
     public void DestroyMatter(string tag)
     {
         matter = GameObject.FindGameObjectsWithTag(tag);
@@ -318,6 +341,7 @@ public class HellBossBehavior : MonoBehaviour
         }
     }
 
+    // When a bullet enters the collision box of the hell boss
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Bullet"))
@@ -336,9 +360,11 @@ public class HellBossBehavior : MonoBehaviour
         }
     }
 
+    // Function that handels damage and phases
     public void takeDamage(Collider2D other, int intDamageTaken)
     {
         Destroy(other.gameObject);
+        audioSource.PlayOneShot(hitShot);
         intHealth = intHealth - intDamageTaken;
         if (intHealth <= 133 && boolPhase1)
         {

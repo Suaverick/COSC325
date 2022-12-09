@@ -5,6 +5,7 @@ using UnityEngine;
 public class BasicEnemyBehavior : MonoBehaviour
 {
 
+    // Variables needed for basic enemy
     public Transform shootingPoint;
     public GameObject bulletPrefab;
     public Transform basicEnemy;
@@ -24,14 +25,16 @@ public class BasicEnemyBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.transform.position != spawnPosition)
+        // Move to correct starting position
+        if (gameObject.transform.position != spawnPosition)     // If current position does not equal its spawn position
         {
             Vector3 newPos = Vector3.MoveTowards(gameObject.transform.position, spawnPosition, fltMoveSpeed * Time.deltaTime);
             gameObject.transform.position = newPos;
         }
-        if (gameObject.transform.position == spawnPosition) bulletBehavior(fltBulletFireRate);
+        if (gameObject.transform.position == spawnPosition) bulletBehavior(fltBulletFireRate);     // If current position does equal spawn position, shoot bullets
     }
 
+    // When a trigger enters the collision box of the enemy
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Bullet" || other.gameObject.tag == "UpgradedBullet" )
@@ -43,6 +46,7 @@ public class BasicEnemyBehavior : MonoBehaviour
         }
     }
     
+    // Function that handles the shooting of the basic enemy
     void bulletBehavior(float fltFireRate)
     {
         if (Time.time >= fltTimer)

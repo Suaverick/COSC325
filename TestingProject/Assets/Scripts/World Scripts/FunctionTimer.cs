@@ -6,6 +6,9 @@ using UnityEngine;
 public class FunctionTimer
 {
 
+    // Used to set a timed action in Unity
+    // Maybe will be used
+
     public static FunctionTimer Create(Action action, float fltTimer)
     {
         GameObject gameObject = new GameObject("FunctionTimer", typeof(MonoBehaviorHook));

@@ -5,7 +5,7 @@ using UnityEngine;
 public class GuardBody : MonoBehaviour
 {
 
-    public int intHealth;
+    public double dblHealth;
 
     // Start is called before the first frame update
     void Start()
@@ -37,10 +37,10 @@ public class GuardBody : MonoBehaviour
         }
     }
 
-    public void takeDamage(int intDamageTaken)
+    public void takeDamage(double dblDamageTaken)
     {
-        intHealth = intHealth - intDamageTaken;
-        if (intHealth <= 0)
+        dblHealth = dblHealth - dblDamageTaken;
+        if (dblHealth <= 0)
         {
             ScoreManager.instance.AddPoint();
             gameObject.SetActive(false);

@@ -1812,7 +1812,7 @@ GameObject:
   - component: {fileID: 580591571}
   - component: {fileID: 580591572}
   m_Layer: 0
-  m_Name: EnemySpawner1
+  m_Name: EnemySpawnerRight
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -1865,6 +1865,7 @@ MonoBehaviour:
     rate: 3
   timeBetweenWaves: 5
   waveCountdown: 3
+  waveWon: 0
 --- !u!1001 &582950776
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2809,7 +2810,7 @@ GameObject:
   - component: {fileID: 1013007811}
   - component: {fileID: 1013007812}
   m_Layer: 0
-  m_Name: EnemySpawner1
+  m_Name: EnemySpawnerLeft
   m_TagString: Untagged
   m_Icon: {fileID: 5721338939258241955, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -2862,6 +2863,7 @@ MonoBehaviour:
     rate: 3
   timeBetweenWaves: 5
   waveCountdown: 3
+  waveWon: 0
 --- !u!1 &1046097817
 GameObject:
   m_ObjectHideFlags: 0
@@ -4143,6 +4145,7 @@ MonoBehaviour:
   pauseMenuUI: {fileID: 956235607}
   player: {fileID: 1647255807}
   gameOverUI: {fileID: 1794252803}
+  healthBar: {fileID: 0}
   shootingPoint: {fileID: 614544882}
   shootingPoint1: {fileID: 161033335}
   shootingPoint2: {fileID: 1541513089}
@@ -4151,10 +4154,11 @@ MonoBehaviour:
   fltBulletFireRate: 0.2
   upgradedGuns: 0
   fltMoveSpeed: 50
-  healthBar: {fileID: 0}
+  boolShipUpgraded: 0
   maxHealth: 20
   currentHealth: 0
-  boolShipUpgraded: 0
+  laserShot: {fileID: 0}
+  damageHit: {fileID: 0}
 --- !u!212 &1647255806
 SpriteRenderer:
   m_ObjectHideFlags: 0

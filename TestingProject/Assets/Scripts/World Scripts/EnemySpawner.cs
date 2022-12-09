@@ -27,6 +27,8 @@ public class EnemySpawner : MonoBehaviour
     private float spawnCountDown = 1f;
     private SpawnState state = SpawnState.counting;
 
+    public bool waveWon = false;
+
     void Start()
     {
         waveCountdown = timeBetweenWaves;
@@ -57,6 +59,7 @@ public class EnemySpawner : MonoBehaviour
                // UnityEngine.Debug.Log("Enemies Incoming");
                if(endGame == waves.Length)
                 {
+                    waveWon = true;
                     return;
                 }
                 else

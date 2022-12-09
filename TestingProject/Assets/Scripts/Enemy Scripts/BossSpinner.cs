@@ -21,15 +21,16 @@ public class BossSpinner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(gameObject.transform.localScale.y <= fltTargetScale)
+        if(gameObject.transform.localScale.y <= fltTargetScale)     // If current scale is less than the target scale, scale up
         {
             gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x, transform.localScale.y + .01f, transform.localScale.z);
         }
-        else {
+        else {     // When scale is greater, begin shooting bullets
             bulletBehavior(fltBulletFireRate);
         }
     }
 
+    // Function that handles bullet shooting
     void bulletBehavior(float fltFireRate)
     {
         if (Time.time >= fltTimer)

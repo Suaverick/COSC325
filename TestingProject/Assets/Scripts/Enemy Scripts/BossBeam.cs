@@ -5,6 +5,7 @@ using UnityEngine;
 public class BossBeam : MonoBehaviour
 {
 
+    // Get Rigid Body for collision
     private Rigidbody2D rb;
 
     private float fltTimer;
