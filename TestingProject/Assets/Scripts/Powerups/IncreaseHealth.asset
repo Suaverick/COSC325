@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: IncreaseHealth
   m_EditorClassIdentifier: 
   amount: 10
+  Mamount: 5
