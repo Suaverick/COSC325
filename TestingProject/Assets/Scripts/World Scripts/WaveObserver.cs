@@ -35,7 +35,7 @@ public class WaveObserver : MonoBehaviour
 
     void updateLeft()
     {
-        if (leftSide.GetComponent<EnemySpawner>().waveWon && leftSide.activeInHierarchy && boolLeftAcc)
+        if (leftSide.GetComponent<EnemySpawner>().waveWon && leftSide.activeInHierarchy && !boolLeftAcc)
         {
             boolLeftAcc = true;
             boolLeft = true;
@@ -44,7 +44,7 @@ public class WaveObserver : MonoBehaviour
 
     void updateRight()
     {
-        if(rightSide.GetComponent<EnemySpawner>().waveWon && rightSide.activeInHierarchy && boolRightAcc)
+        if(rightSide.GetComponent<EnemySpawner>().waveWon && rightSide.activeInHierarchy && !boolRightAcc)
         {
             boolRightAcc = true;
             boolRight = true;
