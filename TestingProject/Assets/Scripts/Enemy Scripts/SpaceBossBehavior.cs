@@ -51,21 +51,43 @@ public class SpaceBossBehavior : MonoBehaviour
     public bool boolGuardsSpawned = false;
     public bool boolOneWave = false;
 
+    private bool boolAtPosition = false;
+    private bool boolSwitch = false;
+
     [SerializeField]
     private Color colorToTurnTo = Color.black;
     [SerializeField]
     private Color colorToTurnBackTo = Color.white;
 
+    private Vector3 startPosition;
+
     // Start is called before the first frame update
     void Start()
     {
         rend = GetComponent<Renderer>();
-        boolPhase1 = true;
+        //boolPhase1 = true;
+
+        startPosition = gameObject.transform.position;
+        startPosition.y = startPosition.y - 8f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (gameObject.transform.position != startPosition && !boolAtPosition)
+        {
+            Vector3 newPos = Vector3.MoveTowards(gameObject.transform.position, startPosition, fltMoveSpeed * Time.deltaTime);
+            gameObject.transform.position = newPos;
+        }
+        if (gameObject.transform.position == spawnPosition)
+        {
+            if (!boolSwitch)
+            {
+                boolSwitch = true;
+                boolAtPosition = true;
+                boolPhase1 = true;
+            }
+        }
         if (boolPhase1) phase1();
         if (bool1to2) phase1to2();
         if (boolPhase2) phase2();
@@ -187,11 +209,10 @@ public class SpaceBossBehavior : MonoBehaviour
 
     void spawnGuards()
     {
-        SpawnGuard(-2f, 1);
-        SpawnGuard(-1f, 1);
-        SpawnGuard(0, 1);
-        SpawnGuard(1f, 1);
-        SpawnGuard(2f, 1);
+        SpawnGuard(-1.5f, 1);
+        SpawnGuard(-0.5f, 1);
+        SpawnGuard(0.5f, 1);
+        SpawnGuard(-1.5f, 1);
         boolGuardsSpawned = true;
     }
 

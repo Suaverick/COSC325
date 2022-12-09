@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4160195715406558336}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.181, y: -1.179, z: 9.969938}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -124,7 +124,7 @@ MonoBehaviour:
   fltSuicideSpeed: 50
   fltCountdown: 5
   intHealth: 5
-  fltMoveSpeed: 8
+  fltMoveSpeed: 12
   colorToTurnTo: {r: 0, g: 0, b: 0, a: 1}
 --- !u!60 &2700658026491023442
 PolygonCollider2D:
