@@ -1,9 +1,5 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:TestingProject/Assets/Assets/Beam2.png.meta
-guid: a2707597f206346078720a563b6b2965
-========
-guid: 7b229a09083754379a2391ba65306c72
->>>>>>>> HealthBar:TestingProject/Assets/Assets/Heart 1.png.meta
+guid: 68e26010b2a7641c7bf1c85df5c223b9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}

@@ -44,7 +44,7 @@ public class ShipBehavior : MonoBehaviour {
     private bool boolUpgradeScreen = false;
     private bool boolPlayerTouched = false;
 
-    public int intLife = 3;
+    public int intLife = 100;
 
     public bool boolShipUpgraded = false; // checks if ship has been upgraded on upgraded screen
 
@@ -245,7 +245,7 @@ public class ShipBehavior : MonoBehaviour {
     {
         if (Time.time >= fltInvincibilityTimer)
         {
-            intLife = intLife - intDamageDone;
+            //intLife = intLife - intDamageDone;
             if (intLife <= 0)
             {
                 gameOver();
