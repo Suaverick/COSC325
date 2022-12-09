@@ -63,7 +63,7 @@ public class ShipBehavior : MonoBehaviour {
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         ShipPosition();
         healthBar.SetHealth(currentHealth);

@@ -79,7 +79,7 @@ public class SpaceBossBehavior : MonoBehaviour
             Vector3 newPos = Vector3.MoveTowards(gameObject.transform.position, startPosition, fltMoveSpeed * Time.deltaTime);
             gameObject.transform.position = newPos;
         }
-        if (gameObject.transform.position == spawnPosition)
+        if (gameObject.transform.position == startPosition)
         {
             if (!boolSwitch)
             {
@@ -370,6 +370,7 @@ public class SpaceBossBehavior : MonoBehaviour
         if (intHealth <= 0)
         {
             ScoreManager.instance.AddPoint();
+            SwapBar.instance.IncrementProgress(100f);
             Destroy(gameObject);
         }
     }
