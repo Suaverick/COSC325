@@ -10,7 +10,7 @@ public class SuicideBomberEnemyBehavior : MonoBehaviour
     public float fltSpeed;
     public float fltSuicideSpeed;
     public float fltCountdown;
-    public int intHealth;
+    public double doubleHealth;
 
     private float fltTimer;
     public float fltMoveSpeed = 8f;
@@ -76,15 +76,15 @@ public class SuicideBomberEnemyBehavior : MonoBehaviour
             takeDamage(other, 1);
         } else if(other.gameObject.tag == "UpgradedBullet")
         {
-            takeDamage(other, 2);
+            takeDamage(other, 1.2);
         }
     }
 
-    public void takeDamage(Collider2D other, int intDamageTaken)
+    public void takeDamage(Collider2D other, double doubleDamageTaken)
     {
         Destroy(other.gameObject);
-        intHealth = intHealth - intDamageTaken;
-        if(intHealth <= 0)
+        doubleHealth = doubleHealth - doubleDamageTaken;
+        if(doubleHealth <= 0)
         {
             ScoreManager.instance.AddPoint();
             Destroy(gameObject);

@@ -130,11 +130,15 @@ public class ShipBehavior : MonoBehaviour {
                         DestoryAllBullet(); // destroy all bullet objects
                         if(boolLeft == true) // if left screen was last screen
                         {
+                            // force player to fly forward out of screen bounds
+
                             right.SetActive(true);  // set right as active
                             boolLeft = false;
                         } 
                         else // if right screen was last screen
                         {
+                            // force player to fly forward out of screen bounds
+
                             left.SetActive(true);  // set left as active
                             boolLeft = true;
                         }

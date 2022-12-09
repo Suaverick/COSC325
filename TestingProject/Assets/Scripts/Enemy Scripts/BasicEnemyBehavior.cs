@@ -34,7 +34,7 @@ public class BasicEnemyBehavior : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Bullet")
+        if (other.gameObject.tag == "Bullet" || other.gameObject.tag == "UpgradedBullet" )
         {
             ScoreManager.instance.AddPoint();
             SwapBar.instance.IncrementProgress(10f);
