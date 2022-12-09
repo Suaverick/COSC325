@@ -5,12 +5,12 @@ using UnityEngine;
 public class GuardBody : MonoBehaviour
 {
 
-    public int intHealth;
+    public double doubleHealth = 10d;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        doubleHealth = 10d;
     }
 
     // Update is called once per frame
@@ -28,7 +28,7 @@ public class GuardBody : MonoBehaviour
         } 
         if(other.gameObject.tag == "UpgradedBullet")
         {
-            takeDamage(2);
+            takeDamage(1.2);
             Destroy(other.gameObject);
         }
         if (other.gameObject.tag == "SpaceBossWave")
@@ -37,10 +37,10 @@ public class GuardBody : MonoBehaviour
         }
     }
 
-    public void takeDamage(int intDamageTaken)
+    public void takeDamage(double doubleDamageTaken)
     {
-        intHealth = intHealth - intDamageTaken;
-        if (intHealth <= 0)
+        doubleHealth = doubleHealth - doubleDamageTaken;
+        if (doubleHealth <= 0)
         {
             ScoreManager.instance.AddPoint();
             gameObject.SetActive(false);

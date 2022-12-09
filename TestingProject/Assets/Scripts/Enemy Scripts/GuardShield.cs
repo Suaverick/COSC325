@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GuardShield : MonoBehaviour
 {
-    public double doubleHealth = 10;
+    public double doubleHealth = 10d;
 
     private float fltTimer;
     public float fltOnline;
@@ -12,7 +12,7 @@ public class GuardShield : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        doubleHealth = 10d;
     }
 
     // Update is called once per frame

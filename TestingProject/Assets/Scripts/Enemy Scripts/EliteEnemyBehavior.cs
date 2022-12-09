@@ -10,7 +10,7 @@ public class EliteEnemyBehavior : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform eliteEnemy;
 
-    public double doubleHealth;
+    public double doubleHealth = 10d;
     private Vector3 spawnPosition;
     public float fltBulletFireRate;
     private float fltMoveSpeed = 8f;
@@ -20,6 +20,7 @@ public class EliteEnemyBehavior : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        doubleHealth = 10d;
         spawnPosition = gameObject.transform.position;
         spawnPosition.y = spawnPosition.y - 8;
     }

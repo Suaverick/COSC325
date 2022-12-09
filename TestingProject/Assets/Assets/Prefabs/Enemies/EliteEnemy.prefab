@@ -200,7 +200,7 @@ MonoBehaviour:
   shootingPointRight: {fileID: 5883895088807244456}
   bulletPrefab: {fileID: 6728135552015766646, guid: 7bd6005686a31ca4f8b74df44d3385c2, type: 3}
   eliteEnemy: {fileID: 5883895089292440598}
-  intHealth: 15
+  doubleHealth: 10
   fltBulletFireRate: 0.8
 --- !u!60 &5883895089292440592
 PolygonCollider2D:
