@@ -61,10 +61,15 @@ public class SpaceBossBehavior : MonoBehaviour
 
     private Vector3 startPosition;
 
+    public AudioClip beamSound;
+
+    private AudioSource audioSource;
+
     // Start is called before the first frame update
     void Start()
     {
         rend = GetComponent<Renderer>();
+        audioSource = GetComponent<AudioSource>();
         //boolPhase1 = true;
 
         startPosition = gameObject.transform.position;
@@ -172,6 +177,7 @@ public class SpaceBossBehavior : MonoBehaviour
     private IEnumerator beamBehavior(bool beam1, bool beam2, bool beam3, bool beam4, bool beam5)
     {
         yield return new WaitForSeconds(fltPatternTime);
+        audioSource.PlayOneShot(beamSound);
         if (beam1) Instantiate(bossBeam, new Vector3(beamPoint1.position.x, beamPoint1.position.y - 4.8f, beamPoint1.position.z), transform.rotation, beamPoint1);
         if (beam2) Instantiate(bossBeam, new Vector3(beamPoint2.position.x, beamPoint2.position.y - 4.8f, beamPoint2.position.z), transform.rotation, beamPoint2);
         if (beam3) Instantiate(bossBeam, new Vector3(beamPoint3.position.x, beamPoint3.position.y - 4.8f, beamPoint3.position.z), transform.rotation, beamPoint3);
