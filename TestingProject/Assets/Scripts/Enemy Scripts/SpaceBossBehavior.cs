@@ -39,35 +39,55 @@ public class SpaceBossBehavior : MonoBehaviour
     public int intMisslesShot;
     private int intHealth = 300;
 
-    private bool boolPhase1 = false;
-    private bool boolPhase2 = false;
-    private bool boolPhase3 = false;
-    private bool boolWaitOn = false;
-    private bool boolPatternOn = false;
-    private bool boolPatternAndMissleOn = false;
-    private bool bool1to2 = false;
-    private bool bool2to3 = false;
-    private bool boolTransitionSwitch = false;
-    private bool boolGuardsSpawned = false;
-    private bool boolOneWave = false;
+    public bool boolPhase1 = false;
+    public bool boolPhase2 = false;
+    public bool boolPhase3 = false;
+    public bool boolWaitOn = false;
+    public bool boolPatternOn = false;
+    public bool boolPatternAndMissleOn = false;
+    public bool bool1to2 = false;
+    public bool bool2to3 = false;
+    public bool boolTransitionSwitch = false;
+    public bool boolGuardsSpawned = false;
+    public bool boolOneWave = false;
 
-    private bool testSwitch = false;
+    private bool boolAtPosition = false;
+    private bool boolSwitch = false;
 
     [SerializeField]
     private Color colorToTurnTo = Color.black;
     [SerializeField]
     private Color colorToTurnBackTo = Color.white;
 
+    private Vector3 startPosition;
+
     // Start is called before the first frame update
     void Start()
     {
         rend = GetComponent<Renderer>();
-        boolPhase1 = true;
+        //boolPhase1 = true;
+
+        startPosition = gameObject.transform.position;
+        startPosition.y = startPosition.y - 8f;
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (gameObject.transform.position != startPosition && !boolAtPosition)
+        {
+            Vector3 newPos = Vector3.MoveTowards(gameObject.transform.position, startPosition, fltMoveSpeed * Time.deltaTime);
+            gameObject.transform.position = newPos;
+        }
+        if (gameObject.transform.position == spawnPosition)
+        {
+            if (!boolSwitch)
+            {
+                boolSwitch = true;
+                boolAtPosition = true;
+                boolPhase1 = true;
+            }
+        }
         if (boolPhase1) phase1();
         if (bool1to2) phase1to2();
         if (boolPhase2) phase2();
@@ -151,6 +171,7 @@ public class SpaceBossBehavior : MonoBehaviour
 
     private IEnumerator beamBehavior(bool beam1, bool beam2, bool beam3, bool beam4, bool beam5)
     {
+        yield return new WaitForSeconds(fltPatternTime);
         if (beam1) Instantiate(bossBeam, new Vector3(beamPoint1.position.x, beamPoint1.position.y - 4.8f, beamPoint1.position.z), transform.rotation, beamPoint1);
         if (beam2) Instantiate(bossBeam, new Vector3(beamPoint2.position.x, beamPoint2.position.y - 4.8f, beamPoint2.position.z), transform.rotation, beamPoint2);
         if (beam3) Instantiate(bossBeam, new Vector3(beamPoint3.position.x, beamPoint3.position.y - 4.8f, beamPoint3.position.z), transform.rotation, beamPoint3);
@@ -158,7 +179,6 @@ public class SpaceBossBehavior : MonoBehaviour
         if (beam5) Instantiate(bossBeam, new Vector3(beamPoint5.position.x, beamPoint5.position.y - 4.8f, beamPoint5.position.z), transform.rotation, beamPoint5);
         yield return new WaitForSeconds(fltPatternTime);
         destroyBeams();
-        yield return new WaitForSeconds(fltPatternTime);
     }
 
     private IEnumerator missleBehavior(bool point1, bool point2, bool point3, bool point4)
@@ -189,11 +209,10 @@ public class SpaceBossBehavior : MonoBehaviour
 
     void spawnGuards()
     {
-        SpawnGuard(-2f, 1);
-        SpawnGuard(-1f, 1);
-        SpawnGuard(0, 1);
-        SpawnGuard(1f, 1);
-        SpawnGuard(2f, 1);
+        SpawnGuard(-1.5f, 1);
+        SpawnGuard(-0.5f, 1);
+        SpawnGuard(0.5f, 1);
+        SpawnGuard(-1.5f, 1);
         boolGuardsSpawned = true;
     }
 
@@ -207,7 +226,8 @@ public class SpaceBossBehavior : MonoBehaviour
         offScreenSpawn = spawnPosition;
         offScreenSpawn.y = spawnPosition.y + 8;
 
-        Instantiate(guard, offScreenSpawn, guard.transform.rotation);
+        GameObject left = GameObject.FindGameObjectWithTag("Left");
+        Instantiate(guard, offScreenSpawn, guard.transform.rotation, left.transform);
 
     }
 
@@ -262,6 +282,14 @@ public class SpaceBossBehavior : MonoBehaviour
         }
     }
 
+    public void phase1to2skip()
+    {
+        bool1to2 = false;
+        rend.material.color = colorToTurnBackTo;
+        boolTransitionSwitch = false;
+        boolPhase2 = true;
+    }
+
     void phase2to3()
     {
         if (!boolOneWave)
@@ -277,14 +305,13 @@ public class SpaceBossBehavior : MonoBehaviour
         }
     }
 
-    bool checkIfActive()
+    public void phase2to3skip()
     {
-        if (gameObject.activeSelf)
-        {
-            return true;
-        }
-        else return false;
-    } 
+        bool2to3 = false;
+        rend.material.color = colorToTurnBackTo;
+        boolTransitionSwitch = false;
+        boolPhase3 = true;
+    }
 
     private IEnumerator phaseTransition()
     {
@@ -315,6 +342,13 @@ public class SpaceBossBehavior : MonoBehaviour
             if (!bool1to2 && !bool2to3)
             {
                 takeDamage(other, 1);
+            }
+        }
+        if (other.CompareTag("UpgradedBullet"))
+        {
+            if (!bool1to2 && !bool2to3)
+            {
+                takeDamage(other, 2);
             }
         }
     }

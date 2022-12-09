@@ -10,7 +10,7 @@ public class EliteEnemyBehavior : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform eliteEnemy;
 
-    public int intHealth;
+    public double doubleHealth;
     private Vector3 spawnPosition;
     public float fltBulletFireRate;
     private float fltMoveSpeed = 8f;
@@ -42,15 +42,15 @@ public class EliteEnemyBehavior : MonoBehaviour
             takeDamage(other, 1);
         } else if(other.gameObject.tag == "UpgradedBullet")
         {
-            takeDamage(other, 2);
+            takeDamage(other, 1.2);
         }
     }
 
-    public void takeDamage(Collider2D other, int intDamageTaken)
+    public void takeDamage(Collider2D other, double doubleDamageTaken)
     {
         Destroy(other.gameObject);
-        intHealth = intHealth - intDamageTaken;
-        if (intHealth <= 0)
+        doubleHealth = doubleHealth - doubleDamageTaken;
+        if (doubleHealth <= 0)
         {
             ScoreManager.instance.AddPoint();
             Destroy(gameObject);

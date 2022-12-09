@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98a0a9aa00ad79844869001b3ebdbd04, type: 3}
   m_Name: IncreaseFiringSpeed
   m_EditorClassIdentifier: 
-  amount: -0.1
+  amount: -0.05

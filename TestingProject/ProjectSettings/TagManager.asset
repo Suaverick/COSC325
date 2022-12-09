@@ -20,6 +20,10 @@ TagManager:
   - DecoyMatter
   - BossSpinner
   - SpinnerDecoy
+  - Left
+  - Right
+  - SpaceBoss
+  - HellBoss
   layers:
   - Default
   - TransparentFX

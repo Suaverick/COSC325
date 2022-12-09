@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GuardShield : MonoBehaviour
 {
-    public int intHealth = 10;
+    public double doubleHealth = 10;
 
     private float fltTimer;
     public float fltOnline;
@@ -31,15 +31,15 @@ public class GuardShield : MonoBehaviour
             takeDamage(other, 1);
         } else if(other.gameObject.tag == "UpgradedBullet")
         {
-            takeDamage(other, 2);
+            takeDamage(other, 1.2);
         }
     }
 
-    public void takeDamage(Collider2D other, int intDamageTaken)
+    public void takeDamage(Collider2D other, double doubleDamageTaken)
     {
         Destroy(other.gameObject);
-        intHealth = intHealth - intDamageTaken;
-        if (intHealth <= 0)
+        doubleHealth = doubleHealth- doubleDamageTaken;
+        if (doubleHealth <= 0)
         {
             gameObject.transform.localScale = new Vector3(0, 0, 0);
             fltTimer = Time.time + fltOnline;
@@ -51,7 +51,7 @@ public class GuardShield : MonoBehaviour
         if (Time.time >= fltTimer)
         {
             gameObject.transform.localScale = new Vector3(1, 1, 1);
-            intHealth = 10;
+            doubleHealth = 10;
         }
     }
 
