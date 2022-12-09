@@ -362,7 +362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57fcf2719b222324c8b87c58344d3ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
+  fltScrollSpeed: 0.5
 --- !u!212 &235434164
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -460,7 +460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57fcf2719b222324c8b87c58344d3ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  fltScrollSpeed: 0.5
 --- !u!212 &275247231
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1848,17 +1848,21 @@ MonoBehaviour:
   spawner: {fileID: 580591571}
   waves:
   - name: Evasian 1
-    enemy: {fileID: 8048581905843954048, guid: 23cdbf43b49d8be42aac29f12ce3fdf0, type: 3}
-    count: 2
-    rate: 1
-  - name: Wave 2
-    enemy: {fileID: 0}
+    enemy: {fileID: 3675298468553531399, guid: 9ec8c9deada2ea0408ba82ae51cee08f, type: 3}
     count: 1
-    rate: 1.5
+    rate: 3
+  - name: Wave 2
+    enemy: {fileID: 5056548680415399085, guid: 389533966f258ce4488f7b2dbb0b0170, type: 3}
+    count: 1
+    rate: 3
   - name: Wave 3
-    enemy: {fileID: 0}
+    enemy: {fileID: 3675298468553531399, guid: 9ec8c9deada2ea0408ba82ae51cee08f, type: 3}
     count: 2
     rate: 2
+  - name: Wave 3
+    enemy: {fileID: 2843323302214345837, guid: f3ba679d7259ba64ea72dc42711d5594, type: 3}
+    count: 1
+    rate: 3
   timeBetweenWaves: 5
   waveCountdown: 3
 --- !u!1001 &582950776
@@ -2255,7 +2259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57fcf2719b222324c8b87c58344d3ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  fltScrollSpeed: 0.5
 --- !u!212 &785508686
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2512,7 +2516,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57fcf2719b222324c8b87c58344d3ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
+  fltScrollSpeed: 0.5
 --- !u!212 &896765278
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2841,21 +2845,21 @@ MonoBehaviour:
   spawner: {fileID: 1013007811}
   waves:
   - name: Evasian 1
-    enemy: {fileID: 3675298468553531399, guid: 3b98f8e71ca81bc4fb69e5894ab12b76, type: 3}
+    enemy: {fileID: 8048581905843954048, guid: 6e2035c79e8fed94995d004de84f4b24, type: 3}
     count: 1
     rate: 3
   - name: Wave 2
-    enemy: {fileID: 0}
-    count: 3
+    enemy: {fileID: 6988343125392380524, guid: 4f8bffe17fd545e4bb5f203bed05f6dc, type: 3}
+    count: 1
     rate: 1.5
   - name: Wave 3
-    enemy: {fileID: 3675298468553531399, guid: 3b98f8e71ca81bc4fb69e5894ab12b76, type: 3}
+    enemy: {fileID: 8048581905843954048, guid: 6e2035c79e8fed94995d004de84f4b24, type: 3}
     count: 2
     rate: 3
   - name: Wave 3
-    enemy: {fileID: 0}
-    count: 5
-    rate: 2
+    enemy: {fileID: 3749265162934764862, guid: 687a257007fb5db4ab95d520cabf57b4, type: 3}
+    count: 1
+    rate: 3
   timeBetweenWaves: 5
   waveCountdown: 3
 --- !u!1 &1046097817
@@ -2888,7 +2892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57fcf2719b222324c8b87c58344d3ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
+  fltScrollSpeed: 0.5
 --- !u!212 &1046097819
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3574,7 +3578,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57fcf2719b222324c8b87c58344d3ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
+  fltScrollSpeed: 0.5
 --- !u!212 &1447511029
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4147,7 +4151,9 @@ MonoBehaviour:
   fltBulletFireRate: 0.2
   upgradedGuns: 0
   fltMoveSpeed: 50
-  intLife: 3
+  healthBar: {fileID: 0}
+  maxHealth: 20
+  currentHealth: 0
   boolShipUpgraded: 0
 --- !u!212 &1647255806
 SpriteRenderer:
@@ -4364,7 +4370,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57fcf2719b222324c8b87c58344d3ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  fltScrollSpeed: 0.5
 --- !u!212 &1709342707
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4531,7 +4537,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57fcf2719b222324c8b87c58344d3ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
+  fltScrollSpeed: 0.5
 --- !u!212 &1782119942
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4629,7 +4635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57fcf2719b222324c8b87c58344d3ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
+  fltScrollSpeed: 0.5
 --- !u!212 &1782981094
 SpriteRenderer:
   m_ObjectHideFlags: 0

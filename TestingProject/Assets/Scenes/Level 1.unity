@@ -168,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57fcf2719b222324c8b87c58344d3ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  fltScrollSpeed: 0.5
 --- !u!212 &275247231
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -314,7 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57fcf2719b222324c8b87c58344d3ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
+  fltScrollSpeed: 0.5
 --- !u!212 &336724665
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1087,7 +1087,9 @@ MonoBehaviour:
   fltBulletFireRate: 0.2
   upgradedGuns: 0
   fltMoveSpeed: 50
-  intLife: 3
+  healthBar: {fileID: 0}
+  maxHealth: 20
+  currentHealth: 0
   boolShipUpgraded: 0
 --- !u!212 &480266753
 SpriteRenderer:
@@ -1874,7 +1876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57fcf2719b222324c8b87c58344d3ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
+  fltScrollSpeed: 0.5
 --- !u!212 &714613563
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2107,7 +2109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57fcf2719b222324c8b87c58344d3ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  fltScrollSpeed: 0.5
 --- !u!212 &785508686
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2325,7 +2327,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57fcf2719b222324c8b87c58344d3ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
+  fltScrollSpeed: 0.5
 --- !u!212 &896765278
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2654,17 +2656,17 @@ MonoBehaviour:
   spawner: {fileID: 1013007811}
   waves:
   - name: Evasian 1
-    enemy: {fileID: 3675298468553531399, guid: fdc561c958cb88a4ba98329523e47a12, type: 3}
+    enemy: {fileID: 8048581905843954048, guid: 5b1f0f0a72ea8534d85ec3367dec7fc8, type: 3}
     count: 1
-    rate: 1
+    rate: 3
   - name: Wave 2
-    enemy: {fileID: 1711347228041249566, guid: a348b142fc29d7842a8752924801d797, type: 3}
-    count: 2
-    rate: 1.5
-  - name: Wave 3
-    enemy: {fileID: 2843323302214345837, guid: 887f8c5eb2b27d84c84ef0b829d02845, type: 3}
+    enemy: {fileID: 1711347228041249566, guid: 02ed7057aad825b45adba04c8ac3bfef, type: 3}
     count: 1
-    rate: 2
+    rate: 3
+  - name: Wave 3
+    enemy: {fileID: 2843323302214345837, guid: f8e55005da0f59c4882f9cfe294bbbc5, type: 3}
+    count: 1
+    rate: 3
   timeBetweenWaves: 5
   waveCountdown: 3
 --- !u!1 &1046097817
@@ -2697,7 +2699,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57fcf2719b222324c8b87c58344d3ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
+  fltScrollSpeed: 0.5
 --- !u!212 &1046097819
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3595,7 +3597,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57fcf2719b222324c8b87c58344d3ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
+  fltScrollSpeed: 0.5
 --- !u!212 &1447511029
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3876,7 +3878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57fcf2719b222324c8b87c58344d3ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 6
+  fltScrollSpeed: 0.5
 --- !u!212 &1571454976
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4378,7 +4380,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57fcf2719b222324c8b87c58344d3ae6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
+  fltScrollSpeed: 0.5
 --- !u!212 &1709342707
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4478,17 +4480,17 @@ MonoBehaviour:
   spawner: {fileID: 1721543070}
   waves:
   - name: Evasian 1
-    enemy: {fileID: 8048581905843954048, guid: cce9e48cbc190f444b87ca22a0eb9618, type: 3}
+    enemy: {fileID: 3675298468553531399, guid: 1bcb8cb24bac9bd4e979441740f377d0, type: 3}
     count: 1
-    rate: 1
+    rate: 3
   - name: Wave 2
-    enemy: {fileID: 8048581905843954048, guid: 8d1853966fb1bff4e8ff1f2b9532ac16, type: 3}
+    enemy: {fileID: 1711347228041249566, guid: d416d4602c725774587c154ffa7ad776, type: 3}
     count: 1
-    rate: 1.5
+    rate: 3
   - name: Wave 3
-    enemy: {fileID: 1711347228041249566, guid: e0bb346ffa26bf04cbbe063574761672, type: 3}
-    count: 0
-    rate: 2
+    enemy: {fileID: 6988343125392380524, guid: 7bfc212083ba84a45bac85b5b2ba8430, type: 3}
+    count: 1
+    rate: 3
   timeBetweenWaves: 5
   waveCountdown: 3
 --- !u!1 &1759652000
