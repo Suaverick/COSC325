@@ -13,4 +13,3 @@ MonoBehaviour:
   m_Name: PermanentHealthBuff
   m_EditorClassIdentifier: 
   amount: 5
-  Mamount: 1

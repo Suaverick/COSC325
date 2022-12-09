@@ -5,7 +5,7 @@ using UnityEngine;
 public class BossSpinner : MonoBehaviour
 {
 
-    private float fltTargetScale = 0.8f;
+    private float fltTargetScale = 0.3f;
 
     public Transform shootingPoint;
     private float fltTimer = 0;
@@ -23,7 +23,7 @@ public class BossSpinner : MonoBehaviour
     {
         if(gameObject.transform.localScale.y <= fltTargetScale)
         {
-            gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x, transform.localScale.y + .01f, transform.localScale.z);
+            gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x, transform.localScale.y + .005f, transform.localScale.z);
         }
         else {
             bulletBehavior(fltBulletFireRate);

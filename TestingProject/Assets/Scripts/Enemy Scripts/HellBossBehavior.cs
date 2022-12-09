@@ -38,41 +38,17 @@ public class HellBossBehavior : MonoBehaviour
 
     private GameObject[] matter;
 
-    private bool boolAtPosition = false;
-    private bool boolSwitch = false;
-
-    private float fltMoveSpeed = 2f;
-
-    private Vector3 startPosition;
-
     // Start is called before the first frame update
     void Start()
     {
-        //boolPhase1 = true;
-        spawnPosition = new Vector2(transform.position.x, transform.position.y - 8f);
+        boolPhase1 = true;
+        spawnPosition = new Vector2(transform.position.x, transform.position.y);
         targetPosition = new Vector2(transform.position.x, -15);
-
-        startPosition = gameObject.transform.position;
-        startPosition.y = startPosition.y - 8f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.transform.position != startPosition && !boolAtPosition)
-        {
-            Vector3 newPos = Vector3.MoveTowards(gameObject.transform.position, startPosition, fltMoveSpeed * Time.deltaTime);
-            gameObject.transform.position = newPos;
-        }
-        if (gameObject.transform.position == startPosition)
-        {
-            if (!boolSwitch)
-            {
-                boolSwitch = true;
-                boolAtPosition = true;
-                boolPhase1 = true;
-            }
-        }
         if (boolPhase1) phase1();
         if (bool1to2) phase1to2();
         if (boolPhase2) phase2();
@@ -181,15 +157,14 @@ public class HellBossBehavior : MonoBehaviour
             spawnDecoys();
             DestroyMatter("Matter");
             spawnSpinners();
-            DestroyMatter("DecoyMatter");
         }
 
-        if (fltRotationAmount < 1080 && spinner.transform.localScale.y >= 0.8f)
+        if (fltRotationAmount < 1080 && spinner.transform.localScale.y >= 0.3f)
         {
-            gameObject.transform.rotation = transform.rotation * Quaternion.Euler(0, 0, 3f);
-            fltRotationAmount += 3f;
+            gameObject.transform.rotation = transform.rotation * Quaternion.Euler(0, 0, 1.5f);
+            fltRotationAmount += 1.5f;
         }
-        else if (fltRotationAmount < 1080 && spinner.transform.localScale.y <= 0.8f)
+        else if (fltRotationAmount < 1080 && spinner.transform.localScale.y <= 0.3f)
         {
             // Do nothing
         }
@@ -199,7 +174,6 @@ public class HellBossBehavior : MonoBehaviour
             {
                 boolDecoySpinnersSpawned = true;
                 spawnDecoySpinners();
-                spawnDecoys();
                 DestroyMatter("BossSpinner");
             }
 
@@ -223,18 +197,14 @@ public class HellBossBehavior : MonoBehaviour
         DestroyMatter("BossSpinner");
         DestroyMatter("SpinnerDecoy");
         DestroyMatter("DecoyMatter");
-        transform.rotation = Quaternion.Euler(0, 0, 0);
+        transform.rotation = transform.rotation * Quaternion.Euler(0, 0, 0);
         boolPhase2 = true;
     }
 
     void phase2()
     {
-
         if(!boolLockedMatterOn)
         {
-            DestroyMatter("BossSpinner");
-            DestroyMatter("SpinnerDecoy");
-            DestroyMatter("DecoyMatter");
             boolLockedMatterOn = true;
             fltRotationAmount = 0;
             spawnMatterLocked();
@@ -291,7 +261,7 @@ public class HellBossBehavior : MonoBehaviour
         bool2to3 = false;
         DestroyMatter("DecoyMatter");
         gameObject.transform.position = spawnPosition;
-        transform.rotation = Quaternion.Euler(0, 0, 0);
+        transform.rotation = transform.rotation * Quaternion.Euler(0, 0, 0);
         boolPhase3 = true;
 
     }
@@ -353,7 +323,6 @@ public class HellBossBehavior : MonoBehaviour
         if (intHealth <= 0)
         {
             ScoreManager.instance.AddPoint();
-            SwapBar.instance.IncrementProgress(100f);
             Destroy(gameObject);
         }
     }
