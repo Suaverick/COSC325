@@ -37,9 +37,9 @@ public class SuicideBomberEnemyBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!boolAtSpawn) 
+        if (!boolAtSpawn)  // If it made it to spawn position
         {
-            if (gameObject.transform.position != spawnPosition)
+            if (gameObject.transform.position != spawnPosition)    // If not at spawn position, move to spawn position
             {
                 Vector3 newPos = Vector3.MoveTowards(gameObject.transform.position, spawnPosition, fltMoveSpeed * Time.deltaTime);
                 gameObject.transform.position = newPos;
@@ -50,7 +50,7 @@ public class SuicideBomberEnemyBehavior : MonoBehaviour
                 boolAtSpawn = true;
             }
         }
-        else if (boolAtSpawn)
+        else if (boolAtSpawn)   // Follow player for 5 seconds, and then shoot towards the player
         {
             if (Time.time <= fltTimer)
             {
@@ -69,6 +69,7 @@ public class SuicideBomberEnemyBehavior : MonoBehaviour
         }
     }
 
+    // When a bullet enters the collision of the suicide bomber
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Bullet")
@@ -80,6 +81,7 @@ public class SuicideBomberEnemyBehavior : MonoBehaviour
         }
     }
 
+    // Handles when a player takes damage
     public void takeDamage(Collider2D other, double doubleDamageTaken)
     {
         Destroy(other.gameObject);

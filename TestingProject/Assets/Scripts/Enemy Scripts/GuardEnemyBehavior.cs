@@ -28,12 +28,12 @@ public class GuardEnemyBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.transform.position != spawnPosition && !boolAtPosition)
+        if (gameObject.transform.position != spawnPosition && !boolAtPosition)     // If enemy is not at its starting location, move there
         {
             Vector3 newPos = Vector3.MoveTowards(gameObject.transform.position, spawnPosition, fltMoveSpeed * Time.deltaTime);
             gameObject.transform.position = newPos;
         }
-        if(gameObject.transform.position == spawnPosition)
+        if(gameObject.transform.position == spawnPosition)                         // If at starting location, turn off movement
         {
             if(!boolSwitch)
             {
@@ -42,11 +42,11 @@ public class GuardEnemyBehavior : MonoBehaviour
             }
         }
 
-        if (!guard.activeInHierarchy)
+        if (!guard.activeInHierarchy)          // If the guard body is not active in the guard object, destroy the guard object
         {
             Destroy(gameObject);
         }
-        if (follow != null && boolAtPosition)
+        if (follow != null && boolAtPosition)      // If the guard is following another enemy and is at its starting location, follow the x-axis of the enemy
         {
             transform.position = Vector2.MoveTowards(transform.position, new Vector2(follow.transform.position.x, transform.position.y), fltSpeed * Time.deltaTime);
             enemyLocation = follow.transform.position;

@@ -28,14 +28,15 @@ public class EliteEnemyBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameObject.transform.position != spawnPosition)
+        if (gameObject.transform.position != spawnPosition)     // If not at starting location, move there
         {
             Vector3 newPos = Vector3.MoveTowards(gameObject.transform.position, spawnPosition, fltMoveSpeed * Time.deltaTime);
             gameObject.transform.position = newPos;
         }
-        if (gameObject.transform.position == spawnPosition) bulletBehavior(fltBulletFireRate);
+        if (gameObject.transform.position == spawnPosition) bulletBehavior(fltBulletFireRate);   // If at starting location, begin shooting
     }
 
+    // When a bullet enters the collision box of the elite enemy, take damage
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Bullet")
@@ -47,6 +48,7 @@ public class EliteEnemyBehavior : MonoBehaviour
         }
     }
 
+    // Function that handles health and damage calculations
     public void takeDamage(Collider2D other, double doubleDamageTaken)
     {
         Destroy(other.gameObject);
@@ -58,6 +60,7 @@ public class EliteEnemyBehavior : MonoBehaviour
         }
     }
 
+    // Function that handles bullet shooting
     void bulletBehavior(float fltFireRate)
     {
         if (Time.time >= fltTimer)

@@ -5,6 +5,8 @@ using UnityEngine;
 public class TentaclesTest : MonoBehaviour
 {
 
+    // Originally for tentacles, now for the basic boss matter
+
     public float rotationSpeed;
     private Vector2 direction;
     public GameObject player;
@@ -23,6 +25,7 @@ public class TentaclesTest : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
+    // Rotate and track player and shoot bullets in the direction of the player
     // Update is called once per frame
     void Update()
     {
@@ -34,6 +37,7 @@ public class TentaclesTest : MonoBehaviour
         bulletBehavior(fltBulletFireRate);
     }
 
+    // Shoot bullets
     void bulletBehavior(float fltFireRate)
     {
         if (Time.time >= fltTimer)

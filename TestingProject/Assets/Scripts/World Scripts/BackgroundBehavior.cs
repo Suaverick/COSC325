@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BackgroundBehavior : MonoBehaviour
 {
-
+    // Variables needed for BackGroundBeavhior
     public float fltScrollSpeed = 0.5f;
     private float fltOffset;
     private Material mat;
@@ -16,6 +16,8 @@ public class BackgroundBehavior : MonoBehaviour
     }
 
     // Update is called once per frame
+    // All this code does it move the background texture on the plane in the levels
+    // Textures are set to repeating, so it will continue to loop
     void Update()
     {
         fltOffset += (Time.deltaTime * fltScrollSpeed) / 2 ;

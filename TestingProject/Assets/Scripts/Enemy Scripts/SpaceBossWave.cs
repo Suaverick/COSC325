@@ -16,6 +16,7 @@ public class SpaceBossWave : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Spawns the wave, and increases the size until the scale is greater than 12
         gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x + 0.05f, gameObject.transform.localScale.y + 0.05f, gameObject.transform.localScale.z);
         if(gameObject.transform.localScale.x >= 12)
         {
