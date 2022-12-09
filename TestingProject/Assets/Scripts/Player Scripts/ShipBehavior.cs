@@ -40,11 +40,15 @@ public class ShipBehavior : MonoBehaviour {
     private float fltTimer = 0;
     private float fltInvincibilityTimer = 0;
 
+    //more code
     private bool boolLeft = true;
     private bool boolUpgradeScreen = false;
     private bool boolPlayerTouched = false;
 
-    public int intLife = 3;
+    public HealthBar healthBar;
+
+    public int maxHealth = 20;
+    public int currentHealth;
 
     public bool boolShipUpgraded = false; // checks if ship has been upgraded on upgraded screen
 
@@ -52,6 +56,8 @@ public class ShipBehavior : MonoBehaviour {
     // Start is called before the first frame update
     void Start()
     {
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<Collider2D>();
     }
@@ -60,6 +66,7 @@ public class ShipBehavior : MonoBehaviour {
     void Update()
     {
         ShipPosition();
+        healthBar.SetHealth(currentHealth);
     }
 
     void ShipPosition()
@@ -126,6 +133,7 @@ public class ShipBehavior : MonoBehaviour {
 
                     if (boolShipUpgraded == true) // something changes on upgrade screen
                     {
+                        healthBar.SetHealth(maxHealth);
                         SwapBar.instance.slider.value = 0; // set swap bar to 0
                         DestoryAllBullet(); // destroy all bullet objects
                         if(boolLeft == true) // if left screen was last screen
@@ -249,8 +257,9 @@ public class ShipBehavior : MonoBehaviour {
     {
         if (Time.time >= fltInvincibilityTimer)
         {
-            intLife = intLife - intDamageDone;
-            if (intLife <= 0)
+            currentHealth = currentHealth - intDamageDone;
+            healthBar.SetHealth(currentHealth);
+            if (currentHealth <= 0)
             {
                 gameOver();
             }
