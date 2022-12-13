@@ -128,7 +128,7 @@ public class ShipBehavior : MonoBehaviour {
                 if (!pauseMenuUI.activeInHierarchy)
                 {
                     endTouchPosition = Input.GetTouch(0).position;
-                    if (endTouchPosition.x < startTouchPosition.x && boolPlayerTouched == false && boolLeft == true && boolUpgradeScreen == false && Mathf.Abs(endTouchPosition.x - startTouchPosition.x) > 100 && SwapBar.instance.slider.value == 100) // if the user swipes to the right with a full swap bar
+                    if (endTouchPosition.x < startTouchPosition.x && boolPlayerTouched == false && boolLeft == true && boolUpgradeScreen == false && Mathf.Abs(endTouchPosition.x - startTouchPosition.x) > 200 && SwapBar.instance.slider.value == 100) // if the user swipes to the right with a full swap bar
                     {
                         SwapBar.instance.slider.value = 0; // set swap bar to 0
                         DestoryAllBullet(); // destroy all bullet objects
@@ -161,7 +161,7 @@ public class ShipBehavior : MonoBehaviour {
                         boolShipUpgraded = false;
                     }
 
-                    if (endTouchPosition.x > startTouchPosition.x && boolPlayerTouched == false && boolLeft == false && boolUpgradeScreen == false && Mathf.Abs(endTouchPosition.x - startTouchPosition.x) > 100 && SwapBar.instance.slider.value == 100) // if the user swipes to the left with a full swap bar
+                    if (endTouchPosition.x > startTouchPosition.x && boolPlayerTouched == false && boolLeft == false && boolUpgradeScreen == false && Mathf.Abs(endTouchPosition.x - startTouchPosition.x) > 200 && SwapBar.instance.slider.value == 100) // if the user swipes to the left with a full swap bar
                     {
 
                         SwapBar.instance.slider.value = 0; // set swap bar to 0

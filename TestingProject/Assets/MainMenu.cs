@@ -6,17 +6,20 @@ using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
 
+    private int intRandom;
+
     public void PlayGame()
     {
-       // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-
+        intRandom = Random.Range(0, 3);
+        if (intRandom == 0) SceneManager.LoadScene("FinalLevel1");
+        else if (intRandom == 1) SceneManager.LoadScene("FinalLevel2");
+        else SceneManager.LoadScene("BossLevel");
     }
     
     public void openSettings()
     {
         // Name of scene or scene index
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-
 
     }
     
