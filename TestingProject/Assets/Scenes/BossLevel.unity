@@ -2655,7 +2655,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   left: {fileID: 1985675182}
   right: {fileID: 1658168445}
-  player: {fileID: 0}
 --- !u!4 &1266406774
 Transform:
   m_ObjectHideFlags: 0
@@ -5066,7 +5065,7 @@ PrefabInstance:
       objectReference: {fileID: 1929912983}
     - target: {fileID: 9152865539857376774, guid: ae41ffe954ec6a244b4e97647d25c9be, type: 3}
       propertyPath: maxHealth
-      value: 667
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 9152865539857376774, guid: ae41ffe954ec6a244b4e97647d25c9be, type: 3}
       propertyPath: gameOverUI
