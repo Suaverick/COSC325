@@ -8,14 +8,29 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
-    path: Assets/Scenes/MainMenu.unity
+  - enabled: 0
+    path: Assets/Scenes/MainMenu2.unity
     guid: b45e1a71db80e0840b519399e2672723
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestLevel.unity
     guid: 3fc8acdd13e6c734bafef6554d6fdbcd
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 28df788c48482433d8f69804fdc443be
+  - enabled: 1
+    path: Assets/Scenes/Level Select.unity
+    guid: 73b5b13c533aa7043bcfc11d8a8560f5
+  - enabled: 1
+    path: Assets/Scenes/FinalLevel1.unity
+    guid: abbb67e5cc0cf8644b6cd801dcdcac81
+  - enabled: 1
+    path: Assets/Scenes/FinalLevel2.unity
+    guid: a642d9a7c9a31ed4ab9aada1dcde0202
+  - enabled: 1
+    path: Assets/Scenes/BossLevel.unity
+    guid: e3e6633d86fe8df428c9658f5af2cac8
   m_configObjects:
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 3365ce8e7d585e84e83ae396fc6f4b6e, type: 2}
