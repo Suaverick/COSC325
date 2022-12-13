@@ -13,7 +13,6 @@ public class Observer : MonoBehaviour
 
     GameObject spaceBoss = null;
     GameObject hellBoss = null;
-    GameObject player = null;
 
     // Bool arrays for seeing the current state of the level
     // { left, right }
@@ -26,7 +25,7 @@ public class Observer : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        
     }
 
     private void Update()
