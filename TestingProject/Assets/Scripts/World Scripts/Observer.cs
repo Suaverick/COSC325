@@ -13,6 +13,7 @@ public class Observer : MonoBehaviour
 
     GameObject spaceBoss = null;
     GameObject hellBoss = null;
+    GameObject player = null;
 
     // Bool arrays for seeing the current state of the level
     // { left, right }
@@ -25,7 +26,7 @@ public class Observer : MonoBehaviour
 
     private void Start()
     {
-
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     private void Update()
@@ -35,7 +36,7 @@ public class Observer : MonoBehaviour
         currentState = getCurrentState();
 
         // Find the SpaceBoss
-        if (spaceBoss == null)
+        if (spaceBoss == null && !boolSpaceBossFound)
         {
             spaceBoss = GameObject.FindGameObjectWithTag("SpaceBoss");
         }
@@ -45,7 +46,7 @@ public class Observer : MonoBehaviour
         }
 
         // Find the hell boss
-        if (hellBoss == null)
+        if (hellBoss == null && !boolHellBossFound)
         {
             hellBoss = GameObject.FindGameObjectWithTag("HellBoss");
         }
@@ -108,6 +109,7 @@ public class Observer : MonoBehaviour
         {
             // Does nothing, just catches the NullReferenceException whenever the player spawps screen
         }
+        
     }
 
     // Updates the states of the hell boss

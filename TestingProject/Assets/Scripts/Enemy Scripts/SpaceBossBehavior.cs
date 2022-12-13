@@ -61,6 +61,8 @@ public class SpaceBossBehavior : MonoBehaviour
     private bool boolAtPosition = false;
     private bool boolSwitch = false;
 
+    public bool boolDead = false;
+
     // Colors from black to white
     [SerializeField]
     private Color colorToTurnTo = Color.black;
@@ -417,6 +419,7 @@ public class SpaceBossBehavior : MonoBehaviour
         {
             ScoreManager.instance.AddPoint();
             SwapBar.instance.IncrementProgress(100f);
+            boolDead = true;
             Destroy(gameObject);
         }
     }

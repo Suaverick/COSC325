@@ -45,6 +45,8 @@ public class HellBossBehavior : MonoBehaviour
     private bool boolAtPosition = false;
     private bool boolSwitch = false;
 
+    public bool boolDead = false;
+
     // Movement speed for the boss
     private float fltMoveSpeed = 2f;
 
@@ -380,6 +382,7 @@ public class HellBossBehavior : MonoBehaviour
         {
             ScoreManager.instance.AddPoint();
             SwapBar.instance.IncrementProgress(100f);
+            boolDead = true;
             Destroy(gameObject);
         }
     }
